@@ -1,0 +1,18 @@
+{
+	"name": "EEE",
+	"version": "1",
+	"title": "English Elearning Entertainment",
+	"model": [
+		"EEE_Domain",
+		"EEE_Topic",
+		"EEE_Course",
+		"EEE_Lesson",
+		"EEE_Part",
+		"EEE_PartHistory",
+		"EEE_Grade",
+		"EEE_Comment",
+		"EEE_Vote"
+		
+	],
+	"permisson": []
+}
