@@ -19,12 +19,12 @@ class EEE_Views_Course
         // check topic
         if (isset($match['topicId'])) {
             $topicId = $match['topicId'];
+            $request->REQUEST['topic'] = $topicId;
         } else {
             $topicId = $request->REQUEST['topic'];
         }
-        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
+        Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
         // create course
-        $p['topic'] = $topic->id;
         $plufService = new Pluf_Views();
         return $plufService->createObject($request, $match, $p);
     }
@@ -117,12 +117,16 @@ class EEE_Views_Course
         // check topic
         if (isset($match['topicId'])) {
             $topicId = $match['topicId'];
+            $request->REQUEST['topic'] = $topicId;
         } else {
             $topicId = $request->REQUEST['topic'];
         }
         $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
+        $course = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $match['modelId']);
+        if ($course->topic !== $topic->id) {
+            throw new Pluf_Exception_DoesNotExist('Course with id (' . $course->id . ') does not exist in topic with id (' . $topic->id . ')');
+        }
         // create course
-        $p['topic'] = $topic->id;
         $plufService = new Pluf_Views();
         return $plufService->updateObject($request, $match, $p);
     }

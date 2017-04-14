@@ -28,14 +28,14 @@ class EEE_Course extends Pluf_Model
             ),
             'version' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
+                'blank' => true,
                 'size' => 50,
                 'editable' => true,
                 'readable' => true
             ),
             'abstract' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
+                'blank' => true,
                 'size' => 250,
                 'editable' => true,
                 'readable' => true
@@ -48,7 +48,7 @@ class EEE_Course extends Pluf_Model
             ),
             'cover' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
+                'blank' => true,
                 'size' => 300,
                 'editable' => true,
                 'readable' => true

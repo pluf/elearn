@@ -26,14 +26,14 @@ class EEE_Part extends Pluf_Model
             ),
             'name' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => true,
+                'blank' => false,
                 'size' => 100,
                 'editable' => true,
                 'readable' => true
             ),
             'title' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => true,
+                'blank' => false,
                 'size' => 250,
                 'editable' => true,
                 'readable' => true

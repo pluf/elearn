@@ -19,12 +19,12 @@ class EEE_Views_Lesson
         // check course
         if (isset($match['courseId'])) {
             $courseId = $match['courseId'];
+            $request->REQUEST['course'] = $courseId;
         } else {
             $courseId = $request->REQUEST['course'];
         }
-        $course = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $courseId);
+        Pluf_Shortcuts_GetObjectOr404('EEE_Course', $courseId);
         // create lesson
-        $p['course'] = $course->id;
         $plufService = new Pluf_Views();
         return $plufService->createObject($request, $match, $p);
     }
@@ -117,10 +117,15 @@ class EEE_Views_Lesson
         // check course
         if (isset($match['courseId'])) {
             $courseId = $match['courseId'];
+            $request->REQUEST['course'] = $courseId;
         } else {
             $courseId = $request->REQUEST['course'];
         }
         $course = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $courseId);
+        $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $match['modelId']);
+        if ($lesson->course !== $course->id) {
+            throw new Pluf_Exception_DoesNotExist('Lesson with id (' . $lesson->id . ') does not exist in course with id (' . $course->id . ')');
+        }
         // create lesson
         $p['course'] = $course->id;
         $plufService = new Pluf_Views();

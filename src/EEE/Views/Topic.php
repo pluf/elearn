@@ -20,12 +20,13 @@ class EEE_Views_Topic
         // check domain
         if (isset($match['domainId'])) {
             $domainId = $match['domainId'];
+            $request->REQUEST['domain'] = $domainId;
         } else {
             $domainId = $request->REQUEST['domain'];
         }
-        $domain = Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
+        $request->REQUEST['owner'] = $request->user->id;
+        Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
         // create topic
-        $p['domain'] = $domain->id;
         $plufService = new Pluf_Views();
         return $plufService->createObject($request, $match, $p);
     }
@@ -119,12 +120,16 @@ class EEE_Views_Topic
         // check domain
         if (isset($match['domainId'])) {
             $domainId = $match['domainId'];
+            $request->REQUEST['domain'] = $domainId;
         } else {
             $domainId = $request->REQUEST['domain'];
         }
         $domain = Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
+        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $match['modelId']);
+        if ($topic->domain !== $domain->id) {
+            throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topic->id . ') does not exist in domain with id (' . $domain->id . ')');
+        }
         // create topic
-        $p['domain'] = $domain->id;
         $plufService = new Pluf_Views();
         return $plufService->updateObject($request, $match, $p);
     }

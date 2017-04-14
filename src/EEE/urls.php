@@ -100,7 +100,7 @@ return array(
         'http-method' => 'GET'
     ),
     array( // Update a Topic of Domain
-        'regex' => '#^/domain/(?P<domainId>\d+)/topic/(?P<topicId>\d+)$#',
+        'regex' => '#^/domain/(?P<domainId>\d+)/topic/(?P<modelId>\d+)$#',
         'model' => 'EEE_Views_Topic',
         'method' => 'update',
         'http-method' => 'POST',
@@ -208,7 +208,7 @@ return array(
         'http-method' => 'GET'
     ),
     array( // Update a Course of Topic
-        'regex' => '#^/topic/(?P<topicId>\d+)/course/(?P<courseId>\d+)$#',
+        'regex' => '#^/topic/(?P<topicId>\d+)/course/(?P<modelId>\d+)$#',
         'model' => 'EEE_Views_Course',
         'method' => 'update',
         'http-method' => 'POST',
@@ -316,7 +316,7 @@ return array(
         'http-method' => 'GET'
     ),
     array( // Update a Lesson of Course
-        'regex' => '#^/course/(?P<courseId>\d+)/lesson/(?P<lessonId>\d+)$#',
+        'regex' => '#^/course/(?P<courseId>\d+)/lesson/(?P<modelId>\d+)$#',
         'model' => 'EEE_Views_Lesson',
         'method' => 'update',
         'http-method' => 'POST',

@@ -17,7 +17,7 @@ return array(
             'Pluf_User'
         )
     ),
-    'EEE_Graid' => array(
+    'EEE_Grade' => array(
         'relate_to_many' => array(
             'EEE_Course'
         )
