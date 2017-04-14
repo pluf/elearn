@@ -10,9 +10,7 @@ composer-setup.php
 composer.phar
 
 # Project
-storage/tenant
-/config.php
-/urls.php
+storage
 
 # KDE
 .directory
