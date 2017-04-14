@@ -82,7 +82,7 @@ return array (
 				'sub' => include 'Backup/urls.php' 
 		),
 		array ( // EEE
-				'regex' => '#^/api/eee#',
+				'regex' => '#^/api/elearning#',
 				'base' => $base,
 				'sub' => include 'EEE/urls.php' 
 		),
