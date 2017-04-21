@@ -163,7 +163,7 @@ class EEE_Part extends Pluf_Model
      */
     function preDelete()
     {
-        // TODO: Hadi - 1396-01: remove related file
+        // remove related file
         unlink($this->file_path . '/' . $this->id);
     }
     

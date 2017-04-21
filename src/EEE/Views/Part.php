@@ -145,7 +145,6 @@ class EEE_Views_Part
         }
         $partCopy = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $partId);
         $part->delete();
-        // TODO: Hadi 1396-01: فایل مربوط به کانتنت باید اینجا یا در preDelete حذف شود
         return new Pluf_HTTP_Response_Json($partCopy);
     }
 
