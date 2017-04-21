@@ -24,3 +24,62 @@ function EEE_Shortcuts_NormalizeItemPerPage($request)
         $count = 30;
     return $count;
 }
+
+/**
+ * یک نام جدید را بررسی می‌کند.
+ *
+ * نام یک محتوی باید در یک ملک به صورت انحصاری تعیین شود. بنابر این روال
+ * بررسی می‌کند که آیا محتویی هم نام با نام در نظر گرفته شده در ملک وجود دارد
+ * یا نه.
+ *
+ * این فراخوانی در فرم‌ها کاربرد دارد.
+ *
+ * @param string $name            
+ * @throws Pluf_Exception
+ * @return string
+ */
+function EEE_Shortcuts_CleanName($name)
+{
+    if ($name === 'new' || $name === 'find') {
+        throw new Pluf_Exception(__('Part name must not be new, find'));
+    }
+    $q = new Pluf_SQL('name=%s', array(
+        $name
+    ));
+    $items = Pluf::factory('EEE_Part')->getList(array(
+        'filter' => $q->gen()
+    ));
+    if (! isset($items) || $items->count() == 0) {
+        return $name;
+    }
+    throw new Pluf_Exception(sprintf(__('Part with the same name exist (name: %s'), $name));
+}
+
+/**
+ * Get content based on name
+ *
+ * @param string $name
+ * @throws CMS_Exception_ObjectNotFound
+ * @return ArrayObject
+ */
+function EEE_Shortcuts_GetPartByNameOr404 ($name)
+{
+    $q = new Pluf_SQL('name=%s', array(
+        $name
+    ));
+    $item = new EEE_Part();
+    $item = $item->getList(
+        array(
+            'filter' => $q->gen()
+        ));
+    if (isset($item) && $item->count() == 1) {
+        return $item[0];
+    }
+    if ($item->count() > 1) {
+        Pluf_Log::error(
+            sprintf(
+                'more than one Part exist with the name $s', $name));
+            return $item[0];
+    }
+    throw new Pluf_Exception_DoesNotExist("Part not found (Part name:" . $name . ")");
+}

@@ -33,7 +33,7 @@ class EEE_Part extends Pluf_Model
             ),
             'title' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
+                'blank' => true,
                 'size' => 250,
                 'editable' => true,
                 'readable' => true
@@ -48,7 +48,7 @@ class EEE_Part extends Pluf_Model
             'mime_type' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => false,
-                'size' => 64,
+                'size' => 100,
                 'default' => 'application/octet-stream',
                 'editable' => false,
                 'readable' => true
@@ -100,16 +100,24 @@ class EEE_Part extends Pluf_Model
             )
         );
         
-//         $this->_a['idx'] = array(
-//             'page_class_idx' => array(
-//                 'col' => 'title',
-//                 'type' => 'unique', // normal, unique, fulltext, spatial
-//                 'index_type' => '', // hash, btree
-//                 'index_option' => '',
-//                 'algorithm_option' => '',
-//                 'lock_option' => ''
-//             )
-//         );
+        $this->_a['idx'] = array(
+            'part_name_idx' => array(
+                'col' => 'name',
+                'type' => 'normal', // normal, unique, fulltext, spatial
+                'index_type' => '', // hash, btree
+                'index_option' => '',
+                'algorithm_option' => '',
+                'lock_option' => ''
+            ),
+            'part_mime_type_idx' => array(
+                'col' => 'mime_type',
+                'type' => 'normal', // normal, unique, fulltext, spatial
+                'index_type' => '', // hash, btree
+                'index_option' => '',
+                'algorithm_option' => '',
+                'lock_option' => ''
+            )
+        );
     }
 
     /**
@@ -124,6 +132,17 @@ class EEE_Part extends Pluf_Model
             $this->creation_dtime = gmdate('Y-m-d H:i:s');
         }
         $this->modif_dtime = gmdate('Y-m-d H:i:s');
+        // File path
+        $path = $this->getAbsloutPath();
+        // file size
+        if (file_exists($path)) {
+            $this->file_size = filesize($path);
+        } else {
+            $this->file_size = 0;
+        }
+        // mime type (based on file name)
+        $fileInfo = Pluf_FileUtil::getMimeType($this->file_name);
+        $this->mime_type = $fileInfo[0];
     }
 
     /**
@@ -144,6 +163,17 @@ class EEE_Part extends Pluf_Model
      */
     function preDelete()
     {
-       //
+        // TODO: Hadi - 1396-01: remove related file
+        unlink($this->file_path . '/' . $this->id);
+    }
+    
+    /**
+     * مسیر کامل محتوی را تعیین می‌کند.
+     *
+     * @return string
+     */
+    public function getAbsloutPath ()
+    {
+        return $this->file_path . '/' . $this->id;
     }
 }

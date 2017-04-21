@@ -456,4 +456,25 @@ return array(
             'Pluf_Precondition::memberRequired'
         )
     ),
+    // Download Part content
+    array(
+        'regex' => '#^/lesson/(?P<lessonId>\d+)/part/(?P<partId>\d+)/download$#',
+        'model' => 'EEE_Part',
+        'method' => 'download',
+        'http-method' => 'GET',
+        // Cache apram
+        'cacheable' => true,
+        'revalidate' => true,
+        'intermediate_cache' => true,
+        'max_age' => 25000
+    ),
+    array(
+        'regex' => '#^/lesson/(?P<lessonId>\d+)/(?P<partId>\d+)/content$#',
+        'model' => 'EEE_Part',
+        'method' => 'updateFile',
+        'http-method' => 'POST',
+        'precond' => array(
+            'Pluf_Precondition::memberRequired'
+        )
+    ),
 );
