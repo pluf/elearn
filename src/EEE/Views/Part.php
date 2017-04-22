@@ -196,32 +196,4 @@ class EEE_Views_Part
         $response->headers['Content-Disposition'] = sprintf('attachment; filename="%s"', $part->file_name);
         return $response;
     }
-    
-    public static function updateFile ($request, $match)
-    {
-        // GET data
-        $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $match['partId']);
-        if (array_key_exists('file', $request->FILES)) {
-            // $extra = array(
-            // // 'user' => $request->user,
-            // 'content' => $content
-            // );
-            // $form = new CMS_Form_ContentUpdate(
-            // array_merge($request->REQUEST, $request->FILES), $extra);
-            // $content = $form->update();
-            // // return new Pluf_HTTP_Response_Json($content);
-            return CMS_Views::update($request, $match);
-        } else {
-            // Do
-            $myfile = fopen($part->getAbsloutPath(), "w") or
-            die("Unable to open file!");
-            $entityBody = file_get_contents('php://input', 'r');
-            fwrite($myfile, $entityBody);
-            fclose($myfile);
-            // $content->file_size = filesize(
-            // $content->file_path . '/' . $content->id);
-            $part->update();
-        }
-        return new Pluf_HTTP_Response_Json($part);
-    }
 }
