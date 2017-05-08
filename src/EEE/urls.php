@@ -261,7 +261,7 @@ return array(
         )
     ),
     array( // Get information
-        'regex' => '#^/ciurse/(?P<courseId>\d+)$#',
+        'regex' => '#^/course/(?P<courseId>\d+)$#',
         'model' => 'EEE_Views_Course',
         'method' => 'get',
         'http-method' => 'GET'
@@ -369,7 +369,7 @@ return array(
         )
     ),
     array( // Get information
-        'regex' => '#^/ciurse/(?P<lessonId>\d+)$#',
+        'regex' => '#^/lesson/(?P<lessonId>\d+)$#',
         'model' => 'EEE_Views_Lesson',
         'method' => 'get',
         'http-method' => 'GET'
