@@ -4,6 +4,7 @@ Pluf::loadFunction('EEE_Shortcuts_NormalizeItemPerPage');
 
 class EEE_Views_Course
 {
+
     // *******************************************************************
     // Course of Topic
     // *******************************************************************
@@ -29,20 +30,24 @@ class EEE_Views_Course
         return $plufService->createObject($request, $match, $p);
     }
 
-    public static function get($request, $match){
+    public static function get($request, $match)
+    {
+        $course = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $match['courseId']);
+        // check topic
         if (isset($match['topicId'])) {
             $topicId = $match['topicId'];
-        } else {
+        } else if (isset($request->REQUEST['topicId'])) {
             $topicId = $request->REQUEST['topicId'];
         }
-        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
-        $course = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $match['courseId']);
-        if ($course->topic !== $topic->id) {
-            throw new Pluf_Exception_DoesNotExist('Course with id (' . $course->id . ') does not exist in topic with id (' . $topic->id . ')');
+        if (isset($topicId)) {
+            $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
+            if ($course->topic !== $topic->id) {
+                throw new Pluf_Exception_DoesNotExist('Course with id (' . $course->id . ') does not exist in topic with id (' . $topic->id . ')');
+            }
         }
         return new Pluf_HTTP_Response_Json($course);
     }
-    
+
     /**
      *
      * @param Pluf_HTTP_Request $request            
@@ -91,40 +96,44 @@ class EEE_Views_Course
 
     public static function remove($request, $match)
     {
-        if (isset($match['topicId'])) {
-            $topicId = $match['topicId'];
-        } else {
-            $topicId = $request->REQUEST['topicId'];
-        }
-        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
         if (isset($match['courseId'])) {
             $courseId = $match['courseId'];
         } else {
             $courseId = $request->REQUEST['courseId'];
         }
         $course = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $courseId);
-        
-        if ($course->topic !== $topic->id) {
-            throw new Pluf_Exception_DoesNotExist('Course with id (' . $courseId . ') does not exist in topic with id (' . $topicId . ')');
+        // check topic if is set
+        if (isset($match['topicId'])) {
+            $topicId = $match['topicId'];
+        } else if (isset($request->REQUEST['topic'])) {
+            $topicId = $request->REQUEST['topic'];
+        }
+        if (isset($topicId)) {
+            $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
+            if ($course->topic !== $topic->id) {
+                throw new Pluf_Exception_DoesNotExist('Course with id (' . $courseId . ') does not exist in topic with id (' . $topicId . ')');
+            }
         }
         $courseCopy = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $courseId);
         $course->delete();
         return new Pluf_HTTP_Response_Json($courseCopy);
     }
-    
+
     public static function update($request, $match, $p)
     {
+        $course = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $match['modelId']);
         // check topic
         if (isset($match['topicId'])) {
             $topicId = $match['topicId'];
             $request->REQUEST['topic'] = $topicId;
-        } else {
+        } else if (isset($request->REQUEST['topic'])) {
             $topicId = $request->REQUEST['topic'];
         }
-        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
-        $course = Pluf_Shortcuts_GetObjectOr404('EEE_Course', $match['modelId']);
-        if ($course->topic !== $topic->id) {
-            throw new Pluf_Exception_DoesNotExist('Course with id (' . $course->id . ') does not exist in topic with id (' . $topic->id . ')');
+        if (isset($topicId)) {
+            $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
+            if ($course->topic !== $topic->id) {
+                throw new Pluf_Exception_DoesNotExist('Course with id (' . $course->id . ') does not exist in topic with id (' . $topic->id . ')');
+            }
         }
         // create course
         $plufService = new Pluf_Views();

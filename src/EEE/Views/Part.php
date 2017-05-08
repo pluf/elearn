@@ -48,15 +48,6 @@ class EEE_Views_Part
 
     public static function get($request, $match)
     {
-        // Check and fetch Lesson
-        if (isset($match['lessonId'])) {
-            $lessonId = $match['lessonId'];
-            Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
-        } else {
-            $lessonId = $request->REQUEST['lessonId'];
-        }
-        $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
-        
         // Check and fetch Part
         if (array_key_exists('partId', $match)) {
             $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $match['partId']);
@@ -64,8 +55,18 @@ class EEE_Views_Part
         } else {
             $part = EEE_Shortcuts_GetPartByNameOr404($match['name']);
         }
-        if ($part->lesson !== $lesson->id) {
-            throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lesson->id . ')');
+        // Check and fetch Lesson
+        if (isset($match['lessonId'])) {
+            $lessonId = $match['lessonId'];
+            Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
+        } else if (isset($request->REQUEST['lessonId'])) {
+            $lessonId = $request->REQUEST['lessonId'];
+        }
+        if (isset($lessonId)) {
+            $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
+            if ($part->lesson !== $lesson->id) {
+                throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lesson->id . ')');
+            }
         }
         return new Pluf_HTTP_Response_Json($part);
     }
@@ -124,14 +125,6 @@ class EEE_Views_Part
 
     public static function remove($request, $match)
     {
-        // Check and fetch Lesson
-        if (isset($match['lessonId'])) {
-            $lessonId = $match['lessonId'];
-            $request->REQUEST['lessonId'] = $lessonId;
-        } else {
-            $lessonId = $request->REQUEST['lessonId'];
-        }
-        $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
         // Check and fetch Part
         if (isset($match['partId'])) {
             $partId = $match['partId'];
@@ -139,9 +132,18 @@ class EEE_Views_Part
             $partId = $request->REQUEST['partId'];
         }
         $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $partId);
-        
-        if ($part->lesson !== $lesson->id) {
-            throw new Pluf_Exception_DoesNotExist('Part with id (' . $partId . ') does not exist in lesson with id (' . $lessonId . ')');
+        // Check and fetch Lesson if is set
+        if (isset($match['lessonId'])) {
+            $lessonId = $match['lessonId'];
+            $request->REQUEST['lessonId'] = $lessonId;
+        } else if (isset($request->REQUEST['lesson'])) {
+            $lessonId = $request->REQUEST['lesson'];
+        }
+        if (isset($lessonId)) {
+            $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
+            if ($part->lesson !== $lesson->id) {
+                throw new Pluf_Exception_DoesNotExist('Part with id (' . $partId . ') does not exist in lesson with id (' . $lessonId . ')');
+            }
         }
         $partCopy = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $partId);
         $part->delete();
@@ -150,17 +152,21 @@ class EEE_Views_Part
 
     public static function update($request, $match, $p)
     {
+        $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $match['modelId']);
         // check lesson
         if (isset($match['lessonId'])) {
             $lessonId = $match['lessonId'];
             $request->REQUEST['lesson'] = $lessonId;
-        } else {
+        } else if (isset($request->REQUEST['lesson'])) {
             $lessonId = $request->REQUEST['lesson'];
         }
-        Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
+        if (isset($lessonId)) {
+            $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
+            if ($part->lesson !== $lesson->id) {
+                throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lesson->id . ')');
+            }
+        }
         // Update Part
-        $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $match['partId']);
-        // اجرای درخواست
         $extra = array(
             'model' => $part
         );
@@ -177,18 +183,20 @@ class EEE_Views_Part
      */
     public static function download($request, $match)
     {
-        // check Lesson
+        // get Part
+        $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $match['partId']);
+        // check Lesson if is set
         if (isset($match['lessonId'])) {
             $lessonId = $match['lessonId'];
             $request->REQUEST['lesson'] = $lessonId;
-        } else {
+        } else if (isset($request->REQUEST['lesson'])) {
             $lessonId = $request->REQUEST['lesson'];
         }
-        $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
-        // get Part
-        $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $match['partId']);
-        if ($part->lesson !== $lesson->id) {
-            throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lessonId . ')');
+        if (isset($lessonId)) {
+            $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
+            if ($part->lesson !== $lesson->id) {
+                throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lessonId . ')');
+            }
         }
         // $part->downloads += 1;
         $part->update();

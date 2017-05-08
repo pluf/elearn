@@ -31,20 +31,23 @@ class EEE_Views_Topic
         return $plufService->createObject($request, $match, $p);
     }
 
-    public static function get($request, $match){
+    public static function get($request, $match)
+    {
+        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $match['topicId']);
         if (isset($match['domainId'])) {
             $domainId = $match['domainId'];
-        } else {
+        } else if (isset($request->REQUEST['domainId'])) {
             $domainId = $request->REQUEST['domainId'];
         }
-        $domain = Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
-        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $match['topicId']);
-        if ($topic->domain !== $domain->id) {
-            throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topic->id . ') does not exist in domain with id (' . $domain->id . ')');
+        if (isset($domainId)) {
+            $domain = Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
+            if ($topic->domain !== $domain->id) {
+                throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topic->id . ') does not exist in domain with id (' . $domain->id . ')');
+            }
         }
         return new Pluf_HTTP_Response_Json($topic);
     }
-    
+
     /**
      *
      * @param Pluf_HTTP_Request $request            
@@ -56,8 +59,8 @@ class EEE_Views_Topic
         // check for domain
         if (isset($match['domainId'])) {
             $domainId = $match['domainId'];
-        } elseif (isset($request->REQUEST['domainId'])) {
-            $domainId = $request->REQUEST['domainId'];
+        } elseif (isset($request->REQUEST['domain'])) {
+            $domainId = $request->REQUEST['domain'];
         }
         
         $topic = new EEE_Topic();
@@ -94,40 +97,44 @@ class EEE_Views_Topic
 
     public static function remove($request, $match)
     {
-        if (isset($match['domainId'])) {
-            $domainId = $match['domainId'];
-        } else {
-            $domainId = $request->REQUEST['domainId'];
-        }
-        $domain = Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
         if (isset($match['topicId'])) {
             $topicId = $match['topicId'];
         } else {
-            $topicId = $request->REQUEST['topicId'];
+            $topicId = $request->REQUEST['topic'];
         }
         $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
-        
-        if ($topic->domain !== $domain->id) {
-            throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topicId . ') does not exist in domain with id (' . $domainId . ')');
+        // check domain if is set
+        if (isset($match['domainId'])) {
+            $domainId = $match['domainId'];
+        } else if (isset($request->REQUEST['domain'])) {
+            $domainId = $request->REQUEST['domain'];
+        }
+        if (isset($domainId)) {
+            $domain = Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
+            if ($topic->domain !== $domain->id) {
+                throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topicId . ') does not exist in domain with id (' . $domainId . ')');
+            }
         }
         $topicCopy = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $topicId);
         $topic->delete();
         return new Pluf_HTTP_Response_Json($topicCopy);
     }
-    
+
     public static function update($request, $match, $p)
     {
+        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $match['modelId']);
         // check domain
         if (isset($match['domainId'])) {
             $domainId = $match['domainId'];
             $request->REQUEST['domain'] = $domainId;
-        } else {
+        } else if (isset($request->REQUEST['domain'])) {
             $domainId = $request->REQUEST['domain'];
         }
-        $domain = Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
-        $topic = Pluf_Shortcuts_GetObjectOr404('EEE_Topic', $match['modelId']);
-        if ($topic->domain !== $domain->id) {
-            throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topic->id . ') does not exist in domain with id (' . $domain->id . ')');
+        if (isset($domainId)) {
+            $domain = Pluf_Shortcuts_GetObjectOr404('EEE_Domain', $domainId);
+            if ($topic->domain !== $domain->id) {
+                throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topic->id . ') does not exist in domain with id (' . $domain->id . ')');
+            }
         }
         // create topic
         $plufService = new Pluf_Views();

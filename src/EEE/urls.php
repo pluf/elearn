@@ -159,7 +159,7 @@ return array(
         'http-method' => 'GET'
     ),
     array( // Update Topic
-        'regex' => '#^/topic/(?P<topicId>\d+)$#',
+        'regex' => '#^/topic/(?P<modelId>\d+)$#',
         'model' => 'EEE_Views_Topic',
         'method' => 'update',
         'http-method' => 'POST',
@@ -267,7 +267,7 @@ return array(
         'http-method' => 'GET'
     ),
     array( // Update Course
-        'regex' => '#^/course/(?P<courseId>\d+)$#',
+        'regex' => '#^/course/(?P<modelId>\d+)$#',
         'model' => 'EEE_Views_Course',
         'method' => 'update',
         'http-method' => 'POST',
@@ -375,7 +375,7 @@ return array(
         'http-method' => 'GET'
     ),
     array( // Update Lesson
-        'regex' => '#^/lesson/(?P<lessonId>\d+)$#',
+        'regex' => '#^/lesson/(?P<modelId>\d+)$#',
         'model' => 'EEE_Views_Lesson',
         'method' => 'update',
         'http-method' => 'POST',
@@ -459,6 +459,67 @@ return array(
     // Download Part content
     array(
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part/(?P<partId>\d+)/content$#',
+        'model' => 'EEE_Views_Part',
+        'method' => 'download',
+        'http-method' => 'GET',
+        // Cache apram
+        'cacheable' => true,
+        'revalidate' => true,
+        'intermediate_cache' => true,
+        'max_age' => 25000
+    ),
+    // ************************************************************* Part
+    array( // Find Part
+        'regex' => '#^/part/find$#',
+        'model' => 'EEE_Views_Part',
+        'method' => 'find',
+        'http-method' => 'GET'
+    ),
+    array( // Create new Part
+        'regex' => '#^/part/new$#',
+        'model' => 'EEE_Views_Part',
+        'method' => 'create',
+        'http-method' => 'POST',
+        'params' => array(
+            'model' => 'EEE_Part'
+        ),
+        'precond' => array(
+            'Pluf_Precondition::loginRequired',
+            'Pluf_Precondition::memberRequired'
+        )
+    ),
+    array( // Get information
+        'regex' => '#^/part/(?P<partId>\d+)$#',
+        'model' => 'EEE_Views_Part',
+        'method' => 'get',
+        'http-method' => 'GET'
+    ),
+    array( // Update a Part
+        'regex' => '#^/part/(?P<modelId>\d+)$#',
+        'model' => 'EEE_Views_Part',
+        'method' => 'update',
+        'http-method' => 'POST',
+        'params' => array(
+            'model' => 'EEE_Part'
+        ),
+        'precond' => array(
+            'Pluf_Precondition::loginRequired',
+            'Pluf_Precondition::memberRequired'
+        )
+    ),
+    array( // Remove a Part
+        'regex' => '#^/part/(?P<partId>\d+)$#',
+        'model' => 'EEE_Views_Part',
+        'method' => 'remove',
+        'http-method' => 'DELETE',
+        'precond' => array(
+            'Pluf_Precondition::loginRequired',
+            'Pluf_Precondition::memberRequired'
+        )
+    ),
+    // Download Part content
+    array(
+        'regex' => '#^/part/(?P<partId>\d+)/content$#',
         'model' => 'EEE_Views_Part',
         'method' => 'download',
         'http-method' => 'GET',

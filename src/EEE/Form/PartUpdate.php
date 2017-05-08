@@ -13,6 +13,10 @@ class EEE_Form_PartUpdate extends Pluf_Form_Model
 
     public function initFields($extra = array())
     {
+        // set lesson field as not required
+        $this->model = $extra['model'];
+        $this->model->_a['cols']['lesson']['blank'] = true;
+        
         parent::initFields($extra);
         
         $this->fields['file'] = new Pluf_Form_Field_File(array(
@@ -39,6 +43,7 @@ class EEE_Form_PartUpdate extends Pluf_Form_Model
         }
         return EEE_Shortcuts_CleanName($name);
     }
+    
 
     /**
      *
