@@ -83,3 +83,19 @@ function EEE_Shortcuts_GetPartByNameOr404 ($name)
     }
     throw new Pluf_Exception_DoesNotExist("Part not found (Part name:" . $name . ")");
 }
+
+/**
+ * 
+ * @param Pluf_Model $model
+ * @param array $filter
+ * @param array $sort
+ * @return array
+ */
+function EEE_Shortcuts_FindAll($model, $filter, $sort){
+    $items = $model->getList(
+        array(
+            'filter' => $filter,
+            'sort' => $sort
+        ));
+    return $items;
+}

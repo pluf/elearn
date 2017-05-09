@@ -152,20 +152,7 @@ class EEE_Views_Part
 
     public static function update($request, $match, $p)
     {
-        $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $match['modelId']);
-        // check lesson
-        if (isset($match['lessonId'])) {
-            $lessonId = $match['lessonId'];
-            $request->REQUEST['lesson'] = $lessonId;
-        } else if (isset($request->REQUEST['lesson'])) {
-            $lessonId = $request->REQUEST['lesson'];
-        }
-        if (isset($lessonId)) {
-            $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
-            if ($part->lesson !== $lesson->id) {
-                throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lesson->id . ')');
-            }
-        }
+        $part = EEE_Views_Part::validatePart($request, $match, $match['modelId']);
         // Update Part
         $extra = array(
             'model' => $part
@@ -203,5 +190,49 @@ class EEE_Views_Part
         $response = new Pluf_HTTP_Response_File($part->getAbsloutPath(), $part->mime_type);
         $response->headers['Content-Disposition'] = sprintf('attachment; filename="%s"', $part->file_name);
         return $response;
+    }
+    
+    public static function updateFile($request, $match)
+    {
+        if (array_key_exists('file', $request->FILES)) {
+            return EEE_Views_Part::update($request, $match);
+        } else {
+            $part = EEE_Views_Part::validatePart($request, $match, $match['partId']);
+            // Do
+            $myfile = fopen($part->getAbsloutPath(), "w") or die("Unable to open file!");
+            $entityBody = file_get_contents('php://input', 'r');
+            fwrite($myfile, $entityBody);
+            fclose($myfile);
+            // $part->file_size = filesize(
+            // $part->file_path . '/' . $content->id);
+            $part->update();
+        }
+        return new Pluf_HTTP_Response_Json($part);
+    }
+    
+    /**
+     * Validate parameters provided by request and match and return requested EEE_Part
+     * if params are valid.
+     * @param  Pluf_HTTP_Request $request
+     * @param array $match
+     * @param string $id
+     * @return EEE_Part
+     */
+    private static function validatePart($request, $match, $id){
+        $part = Pluf_Shortcuts_GetObjectOr404('EEE_Part', $id);
+        // check lesson
+        if (isset($match['lessonId'])) {
+            $lessonId = $match['lessonId'];
+            $request->REQUEST['lesson'] = $lessonId;
+        } else if (isset($request->REQUEST['lesson'])) {
+            $lessonId = $request->REQUEST['lesson'];
+        }
+        if (isset($lessonId)) {
+            $lesson = Pluf_Shortcuts_GetObjectOr404('EEE_Lesson', $lessonId);
+            if ($part->lesson !== $lesson->id) {
+                throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lesson->id . ')');
+            }
+        }
+        return $part;
     }
 }

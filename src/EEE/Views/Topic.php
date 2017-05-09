@@ -95,6 +95,52 @@ class EEE_Views_Topic
         return new Pluf_HTTP_Response_Json($paginator->render_object());
     }
 
+    /**
+     *
+     * @param Pluf_HTTP_Request $request            
+     * @param array $match            
+     * @return Pluf_HTTP_Response_Json
+     */
+    public static function findAll($request, $match)
+    {
+        // check for domain
+        if (isset($match['domainId'])) {
+            $domainId = $match['domainId'];
+        } elseif (isset($request->REQUEST['domain'])) {
+            $domainId = $request->REQUEST['domain'];
+        }
+        
+        $topic = new EEE_Topic();
+        $searcher = new EEE_Searcher($topic);
+        if (isset($domainId)) {
+            $sql = new Pluf_SQL('domain=%s', array(
+                $domainId
+            ));
+            $searcher->forced_where = $sql;
+        }
+        $searcher->list_filters = array(
+            'id',
+            'title',
+            'creation_dtime',
+            'modif_dtime'
+        );
+        $search_fields = array(
+            'title',
+            'description'
+        );
+        $sort_fields = array(
+            'id',
+            'title',
+            'owner',
+            'domain',
+            'creation_dtime',
+            'modif_dtime'
+        );
+        $searcher->configure($search_fields, $sort_fields);
+        $searcher->setFromRequest($request);
+        return new Pluf_HTTP_Response_Json($searcher->render_object());
+    }
+    
     public static function remove($request, $match)
     {
         if (isset($match['topicId'])) {
