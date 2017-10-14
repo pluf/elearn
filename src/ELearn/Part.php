@@ -1,6 +1,6 @@
 <?php
 
-class EEE_Part extends Pluf_Model
+class ELearn_Part extends Pluf_Model
 {
 
     /**
@@ -10,8 +10,8 @@ class EEE_Part extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'eee_part';
-        $this->_a['verbose'] = 'EEE_Part';
+        $this->_a['table'] = 'ELearnpart';
+        $this->_a['verbose'] = 'ELearnPart';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -85,7 +85,7 @@ class EEE_Part extends Pluf_Model
             // relations
             'lesson' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'EEE_Lesson',
+                'model' => 'ELearnLesson',
                 'blank' => false,
                 'relate_name' => 'lesson',
                 'editable' => true,

@@ -1,6 +1,6 @@
 <?php
 
-class EEE_PartHistory extends Pluf_Model
+class ELearn_Domain extends Pluf_Model
 {
 
     /**
@@ -10,8 +10,8 @@ class EEE_PartHistory extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'eee_parthistory';
-        $this->_a['verbose'] = 'EEE_PartHistory';
+        $this->_a['table'] = 'ELearndomain';
+        $this->_a['verbose'] = 'ELearnDomain';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -19,13 +19,17 @@ class EEE_PartHistory extends Pluf_Model
                 'editable' => false,
                 'readable' => true
             ),
-            'correct' => array(
-                'type' => 'Pluf_DB_Field_Integer',
+            'title' => array(
+                'type' => 'Pluf_DB_Field_Varchar',
+                'blank' => false,
+                'size' => 250,
                 'editable' => true,
                 'readable' => true
             ),
-            'total' => array(
-                'type' => 'Pluf_DB_Field_Integer',
+            'description' => array(
+                'type' => 'Pluf_DB_Field_Varchar',
+                'blank' => true,
+                'size' => 250,
                 'editable' => true,
                 'readable' => true
             ),
@@ -35,23 +39,20 @@ class EEE_PartHistory extends Pluf_Model
                 'editable' => false,
                 'readable' => true
             ),
-            // relations
-            'user' => array(
-                'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'Pluf_User',
-                'blank' => false,
-                'relate_name' => 'user',
+            'modif_dtime' => array(
+                'type' => 'Pluf_DB_Field_Datetime',
+                'blank' => true,
                 'editable' => false,
                 'readable' => true
             ),
-            'part' => array(
-                'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'EEE_Part',
-                'blank' => false,
-                'relate_name' => 'part',
-                'editable' => false,
+            'cover' => array(
+                'type' => 'Pluf_DB_Field_Varchar',
+                'blank' => true,
+                'size' => 300,
+                'editable' => true,
                 'readable' => true
             )
+            // relations
         );
         
 //         $this->_a['idx'] = array(
@@ -77,6 +78,7 @@ class EEE_PartHistory extends Pluf_Model
         if ($this->id == '') {
             $this->creation_dtime = gmdate('Y-m-d H:i:s');
         }
+        $this->modif_dtime = gmdate('Y-m-d H:i:s');
     }
 
     /**

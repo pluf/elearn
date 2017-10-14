@@ -1,6 +1,6 @@
 <?php
 
-class EEE_Course extends Pluf_Model
+class ELearn_Vote extends Pluf_Model
 {
 
     /**
@@ -10,8 +10,8 @@ class EEE_Course extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'eee_course';
-        $this->_a['verbose'] = 'EEE_Course';
+        $this->_a['table'] = 'ELearnvote';
+        $this->_a['verbose'] = 'ELearnVote';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -19,55 +19,50 @@ class EEE_Course extends Pluf_Model
                 'editable' => false,
                 'readable' => true
             ),
-            'title' => array(
-                'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
-                'size' => 250,
-                'editable' => true,
-                'readable' => true
-            ),
-            'version' => array(
-                'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => true,
-                'size' => 50,
-                'editable' => true,
-                'readable' => true
-            ),
-            'abstract' => array(
-                'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => true,
-                'size' => 250,
+            'vote' => array(
+                'type' => 'Pluf_DB_Field_Boolean',
                 'editable' => true,
                 'readable' => true
             ),
             'creation_dtime' => array(
                 'type' => 'Pluf_DB_Field_Datetime',
                 'blank' => true,
-                'editable' => false,
+                'editable' => false
+            ),
+            'modif_dtime' => array(
+                'type' => 'Pluf_DB_Field_Datetime',
+                'blank' => true,
+                'editable' => false
+            ),
+            'model_id' => array(
+                'type' => 'Pluf_DB_Field_Integer',
+                'blank' => false,
+                'editable' => true,
                 'readable' => true
             ),
-            'cover' => array(
+            'model_class' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => true,
-                'size' => 300,
+                'blank' => false,
+                'size' => 50,
                 'editable' => true,
                 'readable' => true
             ),
             // relations
-            'topic' => array(
+            'comment' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'EEE_Topic',
+                'model' => 'ELearnComment',
                 'blank' => false,
-                'relate_name' => 'topic',
+                'relate_name' => 'comment',
                 'editable' => true,
                 'readable' => true
             ),
-            'authors' => array(
-                'type' => 'Pluf_DB_Field_Manytomany',
+            'user' => array(
+                'type' => 'Pluf_DB_Field_Foreignkey',
                 'model' => 'Pluf_User',
-                'relate_name' => 'authors',
-                'editable' => false,
-                'readable' => false
+                'blank' => false,
+                'relate_name' => 'user',
+                'editable' => true,
+                'readable' => true
             )
         );
         
@@ -94,6 +89,7 @@ class EEE_Course extends Pluf_Model
         if ($this->id == '') {
             $this->creation_dtime = gmdate('Y-m-d H:i:s');
         }
+        $this->modif_dtime = gmdate('Y-m-d H:i:s');
     }
 
     /**

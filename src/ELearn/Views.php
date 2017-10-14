@@ -1,6 +1,6 @@
 <?php
 
-class EEE_Views{
+class ELearn_Views{
     
     /**
      * Return list of all instance of the data model defined in $p 

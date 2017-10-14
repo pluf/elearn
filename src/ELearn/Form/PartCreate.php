@@ -1,6 +1,6 @@
 <?php
 
-Pluf::loadFunction('EEE_Shortcuts_CleanName');
+Pluf::loadFunction('ELearnShortcuts_CleanName');
 
 /**
  * ایجاد یک محتوای جدید
@@ -10,7 +10,7 @@ Pluf::loadFunction('EEE_Shortcuts_CleanName');
  * @author hadi <mohammad.hadi.mansouri@dpq.co.ir>
  *
  */
-class EEE_Form_PartCreate extends Pluf_Form_Model
+class ELearn_Form_PartCreate extends Pluf_Form_Model
 {
 
     public $tenant = null;
@@ -28,7 +28,7 @@ class EEE_Form_PartCreate extends Pluf_Form_Model
         $name = $this->cleaned_data['name'];
         if (empty($name))
             return null;
-        return EEE_Shortcuts_CleanName($name);
+        return ELearnShortcuts_CleanName($name);
     }
 
     function save ($commit = true)
@@ -38,7 +38,7 @@ class EEE_Form_PartCreate extends Pluf_Form_Model
                     'cannot save the Part from an invalid form');
         }
         // Create the part
-        $part = new EEE_Part();
+        $part = new ELearn_Part();
         $part->setFromFormData($this->cleaned_data);
         $part->file_path = Pluf::f('upload_path') . '/' . $this->tenant->id .
                  '/part';

@@ -1,6 +1,6 @@
 <?php
 
-class EEE_Domain extends Pluf_Model
+class ELearn_Comment extends Pluf_Model
 {
 
     /**
@@ -10,8 +10,8 @@ class EEE_Domain extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'eee_domain';
-        $this->_a['verbose'] = 'EEE_Domain';
+        $this->_a['table'] = 'ELearncomment';
+        $this->_a['verbose'] = 'ELearnComment';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -19,40 +19,60 @@ class EEE_Domain extends Pluf_Model
                 'editable' => false,
                 'readable' => true
             ),
-            'title' => array(
+            'text' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
+                'blank' => true,
                 'size' => 250,
                 'editable' => true,
                 'readable' => true
             ),
-            'description' => array(
+            'status' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => true,
-                'size' => 250,
+                'size' => 50,
+                'editable' => true,
+                'readable' => true
+            ),
+            'mime_type' => array(
+                'type' => 'Pluf_DB_Field_Varchar',
+                'blank' => false,
+                'size' => 64,
+                'default' => 'text/plain',
                 'editable' => true,
                 'readable' => true
             ),
             'creation_dtime' => array(
                 'type' => 'Pluf_DB_Field_Datetime',
                 'blank' => true,
-                'editable' => false,
-                'readable' => true
+                'editable' => false
             ),
             'modif_dtime' => array(
                 'type' => 'Pluf_DB_Field_Datetime',
                 'blank' => true,
-                'editable' => false,
+                'editable' => false
+            ),
+            'model_id' => array(
+                'type' => 'Pluf_DB_Field_Integer',
+                'blank' => false,
+                'editable' => true,
                 'readable' => true
             ),
-            'cover' => array(
+            'model_class' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => true,
-                'size' => 300,
+                'blank' => false,
+                'size' => 50,
+                'editable' => true,
+                'readable' => true
+            ),
+            // relations
+            'user' => array(
+                'type' => 'Pluf_DB_Field_Foreignkey',
+                'model' => 'Pluf_User',
+                'blank' => false,
+                'relate_name' => 'user',
                 'editable' => true,
                 'readable' => true
             )
-            // relations
         );
         
 //         $this->_a['idx'] = array(

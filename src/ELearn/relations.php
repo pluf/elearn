@@ -1,54 +1,54 @@
 <?php
 return array(
-    'EEE_Domain' => array(
+    'ELearn_Domain' => array(
         'relate_to' => array()
     ),
-    'EEE_Topic' => array(
+    'ELearn_Topic' => array(
         'relate_to' => array(
-            'EEE_Domain',
+            'ELearn_Domain',
             'Pluf_User'
         )
     ),
-    'EEE_Course' => array(
+    'ELearn_Course' => array(
         'relate_to' => array(
-            'EEE_Topic'
+            'ELearn_Topic'
         ),
         'relate_to_many' => array(
             'Pluf_User'
         )
     ),
-    'EEE_Grade' => array(
+    'ELearn_Grade' => array(
         'relate_to_many' => array(
-            'EEE_Course'
+            'ELearn_Course'
         )
     ),
-    'EEE_Lesson' => array(
+    'ELearn_Lesson' => array(
         'relate_to' => array(
-            'EEE_Course'
+            'ELearn_Course'
         )
     ),
-    'EEE_Part' => array(
+    'ELearn_Part' => array(
         'relate_to' => array(
-            'EEE_Lesson'
+            'ELearn_Lesson'
         ),
         'relate_to_many' => array(
             'CMS_Content'
         )
     ),
-    'EEE_PartHistory' => array(
+    'ELearn_PartHistory' => array(
         'relate_to' => array(
-            'EEE_Part',
+            'ELearn_Part',
             'Pluf_User'
         )
     ),
-    'EEE_Comment' => array(
+    'ELearn_Comment' => array(
         'relate_to' => array(
             'Pluf_User'
         )
     ),
-    'EEE_Vote' => array(
+    'ELearn_Vote' => array(
         'relate_to' => array(
-            'EEE_Comment',
+            'ELearn_Comment',
             'Pluf_User'
         )
     )

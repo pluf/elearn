@@ -6,8 +6,8 @@
  * یک نمونه استفاده از این کلاس در زیر آورده شده است:
  *
  * <code>
- * $model = new EEE_Lesson();
- * $lister = new EEE_Searcher($model);
+ * $model = new ELearnLesson();
+ * $lister = new ELearnSearcher($model);
  * // Get the parameters from the request
  * $lister->setFromRequest($request);
  * print $lister->render();
@@ -18,7 +18,7 @@
  *
  * @author hadi <mohammad.hadi.mansouri@dpq.oc.ir>
  */
-class EEE_Searcher
+class ELearn_Searcher
 {
 
     /**
@@ -104,7 +104,7 @@ class EEE_Searcher
      * @param $search_fields فهرست
      *            پارامترهایی که می‌تواند جستجو شود.
      *            
-     * @see EEE_Searcher#$search_fields($search_fields=array(), $sort_fields=array())
+     * @see ELearnSearcher#$search_fields($search_fields=array(), $sort_fields=array())
      */
     function __construct($model = null, $search_fields = array())
     {

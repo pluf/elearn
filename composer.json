@@ -1,5 +1,5 @@
 {
-	"name" : "pluf/eee",
+	"name" : "pluf/elearn",
 	"description" : "Elearning-Entertainment server",
 	"type" : "project",
 	"license" : "MIT",
@@ -18,12 +18,11 @@
 	"minimum-stability" : "stable",
 	"prefer-stable" : true,
 	"require" : {
-		"pluf/installer" : "^0.1.0",
-		"pluf/spa" : "^0.1.0",
-		"pluf/cache" : "^0.1.0",
-		"pluf/cms" : "^0.1.0",
-		"pluf/core" : "^2.0",
-		"pluf/bank" : "^0.1.0"
+		"pluf/core" : "^2.1.0"
+	},
+	"require-dev" : {
+		"pluf/test" : "^2.1.0",
+		"pluf/user" : "^2.1.0"
 	},
 	"homepage" : "https://gitlab.com/english-elearning-entertainment/eee-server",
 	"support" : {

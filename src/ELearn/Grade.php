@@ -1,6 +1,6 @@
 <?php
 
-class EEE_Comment extends Pluf_Model
+class ELearn_Grade extends Pluf_Model
 {
 
     /**
@@ -10,68 +10,47 @@ class EEE_Comment extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'eee_comment';
-        $this->_a['verbose'] = 'EEE_Comment';
+        $this->_a['table'] = 'ELearngraid';
+        $this->_a['verbose'] = 'ELearnGraid';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
                 'blank' => false,
                 'editable' => false,
                 'readable' => true
+            ),'order' => array(
+                'type' => 'Pluf_DB_Field_Integer',
+                'editable' => true,
+                'readable' => true
             ),
-            'text' => array(
+            'title' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => true,
+                'blank' => false,
                 'size' => 250,
                 'editable' => true,
                 'readable' => true
             ),
-            'status' => array(
+            'type' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => true,
-                'size' => 50,
+                'blank' => false,
+                'size' => 100,
                 'editable' => true,
                 'readable' => true
             ),
-            'mime_type' => array(
+            'description' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => false,
-                'size' => 64,
-                'default' => 'text/plain',
-                'editable' => true,
-                'readable' => true
-            ),
-            'creation_dtime' => array(
-                'type' => 'Pluf_DB_Field_Datetime',
-                'blank' => true,
-                'editable' => false
-            ),
-            'modif_dtime' => array(
-                'type' => 'Pluf_DB_Field_Datetime',
-                'blank' => true,
-                'editable' => false
-            ),
-            'model_id' => array(
-                'type' => 'Pluf_DB_Field_Integer',
-                'blank' => false,
-                'editable' => true,
-                'readable' => true
-            ),
-            'model_class' => array(
-                'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
-                'size' => 50,
+                'size' => 250,
                 'editable' => true,
                 'readable' => true
             ),
             // relations
-            'user' => array(
-                'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'Pluf_User',
-                'blank' => false,
-                'relate_name' => 'user',
-                'editable' => true,
-                'readable' => true
+            'courses' => array(
+                'type' => 'Pluf_DB_Field_Manytomany',
+                'model' => 'ELearnCourse',
+                'relate_name' => 'courses',
+                'editable' => false,
+                'readable' => false
             )
         );
         
@@ -95,10 +74,7 @@ class EEE_Comment extends Pluf_Model
      */
     function preSave($create = false)
     {
-        if ($this->id == '') {
-            $this->creation_dtime = gmdate('Y-m-d H:i:s');
-        }
-        $this->modif_dtime = gmdate('Y-m-d H:i:s');
+        //
     }
 
     /**

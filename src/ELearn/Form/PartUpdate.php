@@ -8,7 +8,7 @@
  * @author hadi <mohammad.hadi.mansouri@dpq.co.ir>
  *        
  */
-class EEE_Form_PartUpdate extends Pluf_Form_Model
+class ELearn_Form_PartUpdate extends Pluf_Form_Model
 {
 
     public function initFields($extra = array())
@@ -41,7 +41,7 @@ class EEE_Form_PartUpdate extends Pluf_Form_Model
         if (strcmp($name, $this->model->name) === 0) {
             return $name;
         }
-        return EEE_Shortcuts_CleanName($name);
+        return ELearnShortcuts_CleanName($name);
     }
     
 

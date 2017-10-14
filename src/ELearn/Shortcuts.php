@@ -5,19 +5,19 @@
  * @param string $title
  * @return ArrayObject of items or through an exception if database failure
  */
-function EEE_Shortcuts_GetTopicsByTitle($title)
+function ELearn_Shortcuts_GetTopicsByTitle($title)
 {
     $q = new Pluf_SQL('title=%s', array(
         $title
     ));
-    $item = new EEE_Topic();
+    $item = new ELearn_Topic();
     $item = $item->getList(array(
         'filter' => $q->gen()
     ));
     return $item;
 }
 
-function EEE_Shortcuts_NormalizeItemPerPage($request)
+function ELearn_Shortcuts_NormalizeItemPerPage($request)
 {
     $count = array_key_exists('_px_c', $request->REQUEST) ? intval($request->REQUEST['_px_c']) : 30;
     if ($count > 30)
@@ -38,7 +38,7 @@ function EEE_Shortcuts_NormalizeItemPerPage($request)
  * @throws Pluf_Exception
  * @return string
  */
-function EEE_Shortcuts_CleanName($name)
+function ELearn_Shortcuts_CleanName($name)
 {
     if ($name === 'new' || $name === 'find') {
         throw new Pluf_Exception(__('Part name must not be new, find'));
@@ -46,7 +46,7 @@ function EEE_Shortcuts_CleanName($name)
     $q = new Pluf_SQL('name=%s', array(
         $name
     ));
-    $items = Pluf::factory('EEE_Part')->getList(array(
+    $items = Pluf::factory('ELearnPart')->getList(array(
         'filter' => $q->gen()
     ));
     if (! isset($items) || $items->count() == 0) {
@@ -62,12 +62,12 @@ function EEE_Shortcuts_CleanName($name)
  * @throws CMS_Exception_ObjectNotFound
  * @return ArrayObject
  */
-function EEE_Shortcuts_GetPartByNameOr404 ($name)
+function ELearn_Shortcuts_GetPartByNameOr404 ($name)
 {
     $q = new Pluf_SQL('name=%s', array(
         $name
     ));
-    $item = new EEE_Part();
+    $item = new ELearn_Part();
     $item = $item->getList(
         array(
             'filter' => $q->gen()
@@ -91,7 +91,7 @@ function EEE_Shortcuts_GetPartByNameOr404 ($name)
  * @param array $sort
  * @return array
  */
-function EEE_Shortcuts_FindAll($model, $filter, $sort){
+function ELearn_Shortcuts_FindAll($model, $filter, $sort){
     $items = $model->getList(
         array(
             'filter' => $filter,

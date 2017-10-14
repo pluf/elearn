@@ -1,6 +1,6 @@
 <?php
 
-class EEE_Topic extends Pluf_Model
+class ELearn_Course extends Pluf_Model
 {
 
     /**
@@ -10,8 +10,8 @@ class EEE_Topic extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'eee_topic';
-        $this->_a['verbose'] = 'EEE_Topic';
+        $this->_a['table'] = 'ELearncourse';
+        $this->_a['verbose'] = 'ELearnCourse';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -26,7 +26,14 @@ class EEE_Topic extends Pluf_Model
                 'editable' => true,
                 'readable' => true
             ),
-            'description' => array(
+            'version' => array(
+                'type' => 'Pluf_DB_Field_Varchar',
+                'blank' => true,
+                'size' => 50,
+                'editable' => true,
+                'readable' => true
+            ),
+            'abstract' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => true,
                 'size' => 250,
@@ -34,12 +41,6 @@ class EEE_Topic extends Pluf_Model
                 'readable' => true
             ),
             'creation_dtime' => array(
-                'type' => 'Pluf_DB_Field_Datetime',
-                'blank' => true,
-                'editable' => false,
-                'readable' => true
-            ),
-            'modif_dtime' => array(
                 'type' => 'Pluf_DB_Field_Datetime',
                 'blank' => true,
                 'editable' => false,
@@ -53,21 +54,20 @@ class EEE_Topic extends Pluf_Model
                 'readable' => true
             ),
             // relations
-            'owner' => array(
+            'topic' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'Pluf_User',
+                'model' => 'ELearnTopic',
                 'blank' => false,
-                'relate_name' => 'owner',
+                'relate_name' => 'topic',
                 'editable' => true,
                 'readable' => true
             ),
-            'domain' => array(
-                'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'EEE_Domain',
-                'blank' => false,
-                'relate_name' => 'domain',
-                'editable' => true,
-                'readable' => true
+            'authors' => array(
+                'type' => 'Pluf_DB_Field_Manytomany',
+                'model' => 'Pluf_User',
+                'relate_name' => 'authors',
+                'editable' => false,
+                'readable' => false
             )
         );
         
@@ -94,7 +94,6 @@ class EEE_Topic extends Pluf_Model
         if ($this->id == '') {
             $this->creation_dtime = gmdate('Y-m-d H:i:s');
         }
-        $this->modif_dtime = gmdate('Y-m-d H:i:s');
     }
 
     /**

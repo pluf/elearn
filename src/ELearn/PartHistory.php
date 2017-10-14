@@ -1,6 +1,6 @@
 <?php
 
-class EEE_Vote extends Pluf_Model
+class ELearn_PartHistory extends Pluf_Model
 {
 
     /**
@@ -10,8 +10,8 @@ class EEE_Vote extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'eee_vote';
-        $this->_a['verbose'] = 'EEE_Vote';
+        $this->_a['table'] = 'ELearnparthistory';
+        $this->_a['verbose'] = 'ELearnPartHistory';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -19,49 +19,37 @@ class EEE_Vote extends Pluf_Model
                 'editable' => false,
                 'readable' => true
             ),
-            'vote' => array(
-                'type' => 'Pluf_DB_Field_Boolean',
+            'correct' => array(
+                'type' => 'Pluf_DB_Field_Integer',
+                'editable' => true,
+                'readable' => true
+            ),
+            'total' => array(
+                'type' => 'Pluf_DB_Field_Integer',
                 'editable' => true,
                 'readable' => true
             ),
             'creation_dtime' => array(
                 'type' => 'Pluf_DB_Field_Datetime',
                 'blank' => true,
-                'editable' => false
-            ),
-            'modif_dtime' => array(
-                'type' => 'Pluf_DB_Field_Datetime',
-                'blank' => true,
-                'editable' => false
-            ),
-            'model_id' => array(
-                'type' => 'Pluf_DB_Field_Integer',
-                'blank' => false,
-                'editable' => true,
-                'readable' => true
-            ),
-            'model_class' => array(
-                'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
-                'size' => 50,
-                'editable' => true,
+                'editable' => false,
                 'readable' => true
             ),
             // relations
-            'comment' => array(
-                'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'EEE_Comment',
-                'blank' => false,
-                'relate_name' => 'comment',
-                'editable' => true,
-                'readable' => true
-            ),
             'user' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
                 'model' => 'Pluf_User',
                 'blank' => false,
                 'relate_name' => 'user',
-                'editable' => true,
+                'editable' => false,
+                'readable' => true
+            ),
+            'part' => array(
+                'type' => 'Pluf_DB_Field_Foreignkey',
+                'model' => 'ELearnPart',
+                'blank' => false,
+                'relate_name' => 'part',
+                'editable' => false,
                 'readable' => true
             )
         );
@@ -89,7 +77,6 @@ class EEE_Vote extends Pluf_Model
         if ($this->id == '') {
             $this->creation_dtime = gmdate('Y-m-d H:i:s');
         }
-        $this->modif_dtime = gmdate('Y-m-d H:i:s');
     }
 
     /**
