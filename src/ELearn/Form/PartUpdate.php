@@ -41,7 +41,7 @@ class ELearn_Form_PartUpdate extends Pluf_Form_Model
         if (strcmp($name, $this->model->name) === 0) {
             return $name;
         }
-        return ELearnShortcuts_CleanName($name);
+        return ELearn_Shortcuts_CleanName($name);
     }
     
 

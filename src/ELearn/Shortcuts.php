@@ -46,7 +46,7 @@ function ELearn_Shortcuts_CleanName($name)
     $q = new Pluf_SQL('name=%s', array(
         $name
     ));
-    $items = Pluf::factory('ELearnPart')->getList(array(
+    $items = Pluf::factory('ELearn_Part')->getList(array(
         'filter' => $q->gen()
     ));
     if (! isset($items) || $items->count() == 0) {

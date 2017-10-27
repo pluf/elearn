@@ -1,6 +1,6 @@
 <?php
 Pluf::loadFunction('Pluf_Shortcuts_GetObjectOr404');
-Pluf::loadFunction('ELearnShortcuts_NormalizeItemPerPage');
+Pluf::loadFunction('ELearn_Shortcuts_NormalizeItemPerPage');
 
 class ELearn_Views_Lesson
 {
@@ -24,7 +24,7 @@ class ELearn_Views_Lesson
         } else {
             $courseId = $request->REQUEST['course'];
         }
-        Pluf_Shortcuts_GetObjectOr404('ELearnCourse', $courseId);
+        Pluf_Shortcuts_GetObjectOr404('ELearn_Course', $courseId);
         // create lesson
         $plufService = new Pluf_Views();
         return $plufService->createObject($request, $match, $p);
@@ -32,7 +32,7 @@ class ELearn_Views_Lesson
 
     public static function get($request, $match)
     {
-        $lesson = Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $match['lessonId']);
+        $lesson = Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $match['lessonId']);
         // check course if is set
         if (isset($match['courseId'])) {
             $courseId = $match['courseId'];
@@ -40,7 +40,7 @@ class ELearn_Views_Lesson
             $courseId = $request->REQUEST['courseId'];
         }
         if (isset($courseId)) {
-            $course = Pluf_Shortcuts_GetObjectOr404('ELearnCourse', $courseId);
+            $course = Pluf_Shortcuts_GetObjectOr404('ELearn_Course', $courseId);
             if ($lesson->course !== $course->id) {
                 throw new Pluf_Exception_DoesNotExist('Lesson with id (' . $lesson->id . ') does not exist in course with id (' . $course->id . ')');
             }
@@ -89,7 +89,7 @@ class ELearn_Views_Lesson
             'creation_dtime'
         );
         $paginator->configure(array(), $search_fields, $sort_fields);
-        $paginator->items_per_page = ELearnShortcuts_NormalizeItemPerPage($request);
+        $paginator->items_per_page = ELearn_Shortcuts_NormalizeItemPerPage($request);
         $paginator->setFromRequest($request);
         return new Pluf_HTTP_Response_Json($paginator->render_object());
     }
@@ -101,7 +101,7 @@ class ELearn_Views_Lesson
         } else {
             $lessonId = $request->REQUEST['lessonId'];
         }
-        $lesson = Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $lessonId);
+        $lesson = Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $lessonId);
         // check course if is set
         if (isset($match['courseId'])) {
             $courseId = $match['courseId'];
@@ -109,19 +109,19 @@ class ELearn_Views_Lesson
             $courseId = $request->REQUEST['course'];
         }
         if (isset($courseId)) {
-            $course = Pluf_Shortcuts_GetObjectOr404('ELearnCourse', $courseId);
+            $course = Pluf_Shortcuts_GetObjectOr404('ELearn_Course', $courseId);
             if ($lesson->course !== $course->id) {
                 throw new Pluf_Exception_DoesNotExist('Lesson with id (' . $lessonId . ') does not exist in course with id (' . $courseId . ')');
             }
         }
-        $lessonCopy = Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $lessonId);
+        $lessonCopy = Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $lessonId);
         $lesson->delete();
         return new Pluf_HTTP_Response_Json($lessonCopy);
     }
 
     public static function update($request, $match, $p)
     {
-        $lesson = Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $match['modelId']);
+        $lesson = Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $match['modelId']);
         // check course
         if (isset($match['courseId'])) {
             $courseId = $match['courseId'];
@@ -130,7 +130,7 @@ class ELearn_Views_Lesson
             $courseId = $request->REQUEST['course'];
         }
         if (isset($courseId)) {
-            $course = Pluf_Shortcuts_GetObjectOr404('ELearnCourse', $courseId);
+            $course = Pluf_Shortcuts_GetObjectOr404('ELearn_Course', $courseId);
             if ($lesson->course !== $course->id) {
                 throw new Pluf_Exception_DoesNotExist('Lesson with id (' . $lesson->id . ') does not exist in course with id (' . $course->id . ')');
             }

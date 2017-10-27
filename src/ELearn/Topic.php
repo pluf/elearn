@@ -10,8 +10,8 @@ class ELearn_Topic extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'ELearntopic';
-        $this->_a['verbose'] = 'ELearnTopic';
+        $this->_a['table'] = 'elearn_topic';
+        $this->_a['verbose'] = 'ELearn_Topic';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -63,7 +63,7 @@ class ELearn_Topic extends Pluf_Model
             ),
             'domain' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'ELearnDomain',
+                'model' => 'ELearn_Domain',
                 'blank' => false,
                 'relate_name' => 'domain',
                 'editable' => true,

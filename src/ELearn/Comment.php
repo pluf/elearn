@@ -10,8 +10,8 @@ class ELearn_Comment extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'ELearncomment';
-        $this->_a['verbose'] = 'ELearnComment';
+        $this->_a['table'] = 'elearn_comment';
+        $this->_a['verbose'] = 'ELearn_Comment';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -119,6 +119,6 @@ class ELearn_Comment extends Pluf_Model
      */
     function preDelete()
     {
-       //
+        //
     }
 }

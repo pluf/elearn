@@ -6,8 +6,8 @@
  * یک نمونه استفاده از این کلاس در زیر آورده شده است:
  *
  * <code>
- * $model = new ELearnLesson();
- * $lister = new ELearnSearcher($model);
+ * $model = new ELearn_Lesson();
+ * $lister = new ELearn_Searcher($model);
  * // Get the parameters from the request
  * $lister->setFromRequest($request);
  * print $lister->render();
@@ -104,7 +104,7 @@ class ELearn_Searcher
      * @param $search_fields فهرست
      *            پارامترهایی که می‌تواند جستجو شود.
      *            
-     * @see ELearnSearcher#$search_fields($search_fields=array(), $sort_fields=array())
+     * @see ELearn_Searcher#$search_fields($search_fields=array(), $sort_fields=array())
      */
     function __construct($model = null, $search_fields = array())
     {

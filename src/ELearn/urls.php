@@ -7,7 +7,7 @@ return array(
         'method' => 'createObject',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnDomain'
+            'model' => 'ELearn_Domain'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -20,7 +20,7 @@ return array(
         'method' => 'findObject',
         'http-method' => 'GET',
         'params' => array(
-            'model' => 'ELearnDomain',
+            'model' => 'ELearn_Domain',
             'listFilters' => array(
                 'id',
                 'title'
@@ -39,11 +39,11 @@ return array(
     ),
     array( // List All Domains
         'regex' => '#^/domain/list$#',
-        'model' => 'ELearnViews',
+        'model' => 'ELearn_Views',
         'method' => 'listAll',
         'http-method' => 'GET',
         'params' => array(
-            'model' => 'ELearnDomain'
+            'model' => 'ELearn_Domain'
         )
     ),
     array( // Get information
@@ -52,7 +52,7 @@ return array(
         'method' => 'getObject',
         'http-method' => 'GET',
         'params' => array(
-            'model' => 'ELearnDomain'
+            'model' => 'ELearn_Domain'
         )
     ),
     array( // Delete
@@ -61,7 +61,7 @@ return array(
         'method' => 'deleteObject',
         'http-method' => 'DELETE',
         'params' => array(
-            'model' => 'ELearnDomain',
+            'model' => 'ELearn_Domain',
             'permanently' => true
         ),
         'precond' => array(
@@ -75,7 +75,7 @@ return array(
         'method' => 'updateObject',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnDomain'
+            'model' => 'ELearn_Domain'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -85,17 +85,17 @@ return array(
     // ************************************************************* Topics of Domain
     array( // Find Topics of Domain
         'regex' => '#^/domain/(?P<domainId>\d+)/topic/find$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'find',
         'http-method' => 'GET'
     ),
     array( // Create new Topic in Domain
         'regex' => '#^/domain/(?P<domainId>\d+)/topic/new$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'create',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnTopic'
+            'model' => 'ELearn_Topic'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -104,17 +104,17 @@ return array(
     ),
     array( // Get information
         'regex' => '#^/domain/(?P<domainId>\d+)/topic/(?P<topicId>\d+)$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'get',
         'http-method' => 'GET'
     ),
     array( // Update a Topic of Domain
         'regex' => '#^/domain/(?P<domainId>\d+)/topic/(?P<modelId>\d+)$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'update',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnTopic'
+            'model' => 'ELearn_Topic'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -123,7 +123,7 @@ return array(
     ),
     array( // Remove a Topic
         'regex' => '#^/domain/(?P<domainId>\d+)/topic/(?P<topicId>\d+)$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -133,7 +133,7 @@ return array(
     ),
     array( // Remove a Topic
         'regex' => '#^/domain/(?P<domainId>\d+)/topic$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -144,26 +144,26 @@ return array(
     // ************************************************************* Topics
     array( // Find Topics
         'regex' => '#^/topic/find$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'find',
         'http-method' => 'GET'
     ),
     array( // List All Topics
         'regex' => '#^/topic/list$#',
-        'model' => 'ELearnViews',
+        'model' => 'ELearn_Views',
         'method' => 'listAll',
         'http-method' => 'GET',
         'params' => array(
-            'model' => 'ELearnTopic'
+            'model' => 'ELearn_Topic'
         )
     ),
     array( // Create new Topic
         'regex' => '#^/topic/new$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'create',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnTopic'
+            'model' => 'ELearn_Topic'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -172,17 +172,17 @@ return array(
     ),
     array( // Get information
         'regex' => '#^/topic/(?P<topicId>\d+)$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'get',
         'http-method' => 'GET'
     ),
     array( // Update Topic
         'regex' => '#^/topic/(?P<modelId>\d+)$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'update',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnTopic'
+            'model' => 'ELearn_Topic'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -191,7 +191,7 @@ return array(
     ),
     array( // Remove Topic
         'regex' => '#^/topic/(?P<topicId>\d+)$#',
-        'model' => 'ELearnViews_Topic',
+        'model' => 'ELearn_Views_Topic',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -202,17 +202,17 @@ return array(
     // ************************************************************* Course of Topic
     array( // Find Course of Topic
         'regex' => '#^/topic/(?P<topicId>\d+)/course/find$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'find',
         'http-method' => 'GET'
     ),
     array( // Create new Course in Topic
         'regex' => '#^/topic/(?P<topicId>\d+)/course/new$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'create',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnCourse'
+            'model' => 'ELearn_Course'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -221,17 +221,17 @@ return array(
     ),
     array( // Get information
         'regex' => '#^/topic/(?P<topicId>\d+)/course/(?P<courseId>\d+)$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'get',
         'http-method' => 'GET'
     ),
     array( // Update a Course of Topic
         'regex' => '#^/topic/(?P<topicId>\d+)/course/(?P<modelId>\d+)$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'update',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnCourse'
+            'model' => 'ELearn_Course'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -240,7 +240,7 @@ return array(
     ),
     array( // Remove a Course
         'regex' => '#^/topic/(?P<topicId>\d+)/course/(?P<courseId>\d+)$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -250,7 +250,7 @@ return array(
     ),
     array( // Remove a Course
         'regex' => '#^/topic/(?P<topicId>\d+)/course$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -261,26 +261,26 @@ return array(
     // ************************************************************* Course
     array( // Find Course
         'regex' => '#^/course/find$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'find',
         'http-method' => 'GET'
     ),
     array( // List All Courses
         'regex' => '#^/course/list$#',
-        'model' => 'ELearnViews',
+        'model' => 'ELearn_Views',
         'method' => 'listAll',
         'http-method' => 'GET',
         'params' => array(
-            'model' => 'ELearnCourse'
+            'model' => 'ELearn_Course'
         )
     ),
     array( // Create new Course
         'regex' => '#^/course/new$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'create',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnCourse'
+            'model' => 'ELearn_Course'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -289,17 +289,17 @@ return array(
     ),
     array( // Get information
         'regex' => '#^/course/(?P<courseId>\d+)$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'get',
         'http-method' => 'GET'
     ),
     array( // Update Course
         'regex' => '#^/course/(?P<modelId>\d+)$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'update',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnCourse'
+            'model' => 'ELearn_Course'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -308,7 +308,7 @@ return array(
     ),
     array( // Remove Course
         'regex' => '#^/course/(?P<courseId>\d+)$#',
-        'model' => 'ELearnViews_Course',
+        'model' => 'ELearn_Views_Course',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -319,17 +319,17 @@ return array(
     // ************************************************************* Lesson of Course
     array( // Find Lesson of Course
         'regex' => '#^/course/(?P<courseId>\d+)/lesson/find$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'find',
         'http-method' => 'GET'
     ),
     array( // Create new Lesson in Course
         'regex' => '#^/course/(?P<courseId>\d+)/lesson/new$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'create',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnLesson'
+            'model' => 'ELearn_Lesson'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -338,17 +338,17 @@ return array(
     ),
     array( // Get information
         'regex' => '#^/course/(?P<courseId>\d+)/lesson/(?P<lessonId>\d+)$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'get',
         'http-method' => 'GET'
     ),
     array( // Update a Lesson of Course
         'regex' => '#^/course/(?P<courseId>\d+)/lesson/(?P<modelId>\d+)$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'update',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnLesson'
+            'model' => 'ELearn_Lesson'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -357,7 +357,7 @@ return array(
     ),
     array( // Remove a Lesson
         'regex' => '#^/course/(?P<courseId>\d+)/lesson/(?P<lessonId>\d+)$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -367,7 +367,7 @@ return array(
     ),
     array( // Remove a Lesson
         'regex' => '#^/course/(?P<courseId>\d+)/lesson$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -378,26 +378,26 @@ return array(
     // ************************************************************* Lesson
     array( // Find Lesson
         'regex' => '#^/lesson/find$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'find',
         'http-method' => 'GET'
     ),
     array( // List All Lessons
         'regex' => '#^/lesson/list$#',
-        'model' => 'ELearnViews',
+        'model' => 'ELearn_Views',
         'method' => 'listAll',
         'http-method' => 'GET',
         'params' => array(
-            'model' => 'ELearnLesson'
+            'model' => 'ELearn_Lesson'
         )
     ),
     array( // Create new Lesson
         'regex' => '#^/lesson/new$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'create',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnLesson'
+            'model' => 'ELearn_Lesson'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -406,17 +406,17 @@ return array(
     ),
     array( // Get information
         'regex' => '#^/lesson/(?P<lessonId>\d+)$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'get',
         'http-method' => 'GET'
     ),
     array( // Update Lesson
         'regex' => '#^/lesson/(?P<modelId>\d+)$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'update',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnLesson'
+            'model' => 'ELearn_Lesson'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -425,7 +425,7 @@ return array(
     ),
     array( // Remove Lesson
         'regex' => '#^/lesson/(?P<lessonId>\d+)$#',
-        'model' => 'ELearnViews_Lesson',
+        'model' => 'ELearn_Views_Lesson',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -436,17 +436,17 @@ return array(
     // ************************************************************* Part of Lesson
     array( // Find Part of Lesson
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part/find$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'find',
         'http-method' => 'GET'
     ),
     array( // Create new Part in Lesson
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part/new$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'create',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnPart'
+            'model' => 'ELearn_Part'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -455,17 +455,17 @@ return array(
     ),
     array( // Get information
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part/(?P<partId>\d+)$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'get',
         'http-method' => 'GET'
     ),
     array( // Update a Part of Lesson
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part/(?P<partId>\d+)$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'update',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnPart'
+            'model' => 'ELearn_Part'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -474,7 +474,7 @@ return array(
     ),
     array( // Remove a Part
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part/(?P<partId>\d+)$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -484,7 +484,7 @@ return array(
     ),
     array( // Remove a Part
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -495,7 +495,7 @@ return array(
     // Download Part content
     array(
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part/(?P<partId>\d+)/content$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'download',
         'http-method' => 'GET',
         // Cache apram
@@ -507,7 +507,7 @@ return array(
     // Update content by send content as request body
     array(
         'regex' => '#^/lesson/(?P<lessonId>\d+)/part/(?P<partId>\d+)/content$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'updateFile',
         'http-method' => 'POST',
         'precond' => array(
@@ -518,26 +518,26 @@ return array(
     // ************************************************************* Part
     array( // Find Part
         'regex' => '#^/part/find$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'find',
         'http-method' => 'GET'
     ),
     array( // List All Parts
         'regex' => '#^/part/list$#',
-        'model' => 'ELearnViews',
+        'model' => 'ELearn_Views',
         'method' => 'listAll',
         'http-method' => 'GET',
         'params' => array(
-            'model' => 'ELearnPart'
+            'model' => 'ELearn_Part'
         )
     ),
     array( // Create new Part
         'regex' => '#^/part/new$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'create',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnPart'
+            'model' => 'ELearn_Part'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -546,17 +546,17 @@ return array(
     ),
     array( // Get information
         'regex' => '#^/part/(?P<partId>\d+)$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'get',
         'http-method' => 'GET'
     ),
     array( // Update a Part
         'regex' => '#^/part/(?P<modelId>\d+)$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'update',
         'http-method' => 'POST',
         'params' => array(
-            'model' => 'ELearnPart'
+            'model' => 'ELearn_Part'
         ),
         'precond' => array(
             'Pluf_Precondition::loginRequired',
@@ -565,7 +565,7 @@ return array(
     ),
     array( // Remove a Part
         'regex' => '#^/part/(?P<partId>\d+)$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
@@ -576,7 +576,7 @@ return array(
     // Download Part content
     array(
         'regex' => '#^/part/(?P<partId>\d+)/content$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'download',
         'http-method' => 'GET',
         // Cache param
@@ -588,7 +588,7 @@ return array(
     // Update content by send content as request body
     array(
         'regex' => '#^/part/(?P<partId>\d+)/content$#',
-        'model' => 'ELearnViews_Part',
+        'model' => 'ELearn_Views_Part',
         'method' => 'updateFile',
         'http-method' => 'POST',
         'precond' => array(

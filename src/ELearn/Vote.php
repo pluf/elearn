@@ -10,8 +10,8 @@ class ELearn_Vote extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'ELearnvote';
-        $this->_a['verbose'] = 'ELearnVote';
+        $this->_a['table'] = 'elearn_vote';
+        $this->_a['verbose'] = 'ELearn_Vote';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -50,7 +50,7 @@ class ELearn_Vote extends Pluf_Model
             // relations
             'comment' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'ELearnComment',
+                'model' => 'ELearn_Comment',
                 'blank' => false,
                 'relate_name' => 'comment',
                 'editable' => true,

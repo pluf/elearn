@@ -1,6 +1,6 @@
 <?php
 
-Pluf::loadFunction('ELearnShortcuts_CleanName');
+Pluf::loadFunction('ELearn_Shortcuts_CleanName');
 
 /**
  * ایجاد یک محتوای جدید
@@ -28,7 +28,7 @@ class ELearn_Form_PartCreate extends Pluf_Form_Model
         $name = $this->cleaned_data['name'];
         if (empty($name))
             return null;
-        return ELearnShortcuts_CleanName($name);
+        return ELearn_Shortcuts_CleanName($name);
     }
 
     function save ($commit = true)

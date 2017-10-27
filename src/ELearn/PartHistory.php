@@ -10,8 +10,8 @@ class ELearn_PartHistory extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'ELearnparthistory';
-        $this->_a['verbose'] = 'ELearnPartHistory';
+        $this->_a['table'] = 'elearn_parthistory';
+        $this->_a['verbose'] = 'ELearn_PartHistory';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -46,7 +46,7 @@ class ELearn_PartHistory extends Pluf_Model
             ),
             'part' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'ELearnPart',
+                'model' => 'ELearn_Part',
                 'blank' => false,
                 'relate_name' => 'part',
                 'editable' => false,

@@ -1,6 +1,6 @@
 <?php
 Pluf::loadFunction('Pluf_Shortcuts_GetObjectOr404');
-Pluf::loadFunction('ELearnShortcuts_NormalizeItemPerPage');
+Pluf::loadFunction('ELearn_Shortcuts_NormalizeItemPerPage');
 
 class ELearn_Views_Topic
 {
@@ -25,7 +25,7 @@ class ELearn_Views_Topic
             $domainId = $request->REQUEST['domain'];
         }
         $request->REQUEST['owner'] = $request->user->id;
-        Pluf_Shortcuts_GetObjectOr404('ELearnDomain', $domainId);
+        Pluf_Shortcuts_GetObjectOr404('ELearn_Domain', $domainId);
         // create topic
         $plufService = new Pluf_Views();
         return $plufService->createObject($request, $match, $p);
@@ -33,14 +33,14 @@ class ELearn_Views_Topic
 
     public static function get($request, $match)
     {
-        $topic = Pluf_Shortcuts_GetObjectOr404('ELearnTopic', $match['topicId']);
+        $topic = Pluf_Shortcuts_GetObjectOr404('ELearn_Topic', $match['topicId']);
         if (isset($match['domainId'])) {
             $domainId = $match['domainId'];
         } else if (isset($request->REQUEST['domainId'])) {
             $domainId = $request->REQUEST['domainId'];
         }
         if (isset($domainId)) {
-            $domain = Pluf_Shortcuts_GetObjectOr404('ELearnDomain', $domainId);
+            $domain = Pluf_Shortcuts_GetObjectOr404('ELearn_Domain', $domainId);
             if ($topic->domain !== $domain->id) {
                 throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topic->id . ') does not exist in domain with id (' . $domain->id . ')');
             }
@@ -90,7 +90,7 @@ class ELearn_Views_Topic
             'modif_dtime'
         );
         $paginator->configure(array(), $search_fields, $sort_fields);
-        $paginator->items_per_page = ELearnShortcuts_NormalizeItemPerPage($request);
+        $paginator->items_per_page = ELearn_Shortcuts_NormalizeItemPerPage($request);
         $paginator->setFromRequest($request);
         return new Pluf_HTTP_Response_Json($paginator->render_object());
     }
@@ -148,7 +148,7 @@ class ELearn_Views_Topic
         } else {
             $topicId = $request->REQUEST['topic'];
         }
-        $topic = Pluf_Shortcuts_GetObjectOr404('ELearnTopic', $topicId);
+        $topic = Pluf_Shortcuts_GetObjectOr404('ELearn_Topic', $topicId);
         // check domain if is set
         if (isset($match['domainId'])) {
             $domainId = $match['domainId'];
@@ -156,19 +156,19 @@ class ELearn_Views_Topic
             $domainId = $request->REQUEST['domain'];
         }
         if (isset($domainId)) {
-            $domain = Pluf_Shortcuts_GetObjectOr404('ELearnDomain', $domainId);
+            $domain = Pluf_Shortcuts_GetObjectOr404('ELearn_Domain', $domainId);
             if ($topic->domain !== $domain->id) {
                 throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topicId . ') does not exist in domain with id (' . $domainId . ')');
             }
         }
-        $topicCopy = Pluf_Shortcuts_GetObjectOr404('ELearnTopic', $topicId);
+        $topicCopy = Pluf_Shortcuts_GetObjectOr404('ELearn_Topic', $topicId);
         $topic->delete();
         return new Pluf_HTTP_Response_Json($topicCopy);
     }
 
     public static function update($request, $match, $p)
     {
-        $topic = Pluf_Shortcuts_GetObjectOr404('ELearnTopic', $match['modelId']);
+        $topic = Pluf_Shortcuts_GetObjectOr404('ELearn_Topic', $match['modelId']);
         // check domain
         if (isset($match['domainId'])) {
             $domainId = $match['domainId'];
@@ -177,7 +177,7 @@ class ELearn_Views_Topic
             $domainId = $request->REQUEST['domain'];
         }
         if (isset($domainId)) {
-            $domain = Pluf_Shortcuts_GetObjectOr404('ELearnDomain', $domainId);
+            $domain = Pluf_Shortcuts_GetObjectOr404('ELearn_Domain', $domainId);
             if ($topic->domain !== $domain->id) {
                 throw new Pluf_Exception_DoesNotExist('Topic with id (' . $topic->id . ') does not exist in domain with id (' . $domain->id . ')');
             }

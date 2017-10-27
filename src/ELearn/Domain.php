@@ -10,8 +10,8 @@ class ELearn_Domain extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'ELearndomain';
-        $this->_a['verbose'] = 'ELearnDomain';
+        $this->_a['table'] = 'elearn_domain';
+        $this->_a['verbose'] = 'ELearn_Domain';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',

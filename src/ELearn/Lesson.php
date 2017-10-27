@@ -10,8 +10,8 @@ class ELearn_Lesson extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'ELearnlesson';
-        $this->_a['verbose'] = 'ELearnLesson';
+        $this->_a['table'] = 'elearn_lesson';
+        $this->_a['verbose'] = 'ELearn_Lesson';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -55,7 +55,7 @@ class ELearn_Lesson extends Pluf_Model
             // relations
             'course' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'ELearnCourse',
+                'model' => 'ELearn_Course',
                 'blank' => false,
                 'relate_name' => 'course',
                 'editable' => true,

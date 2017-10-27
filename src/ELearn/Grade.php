@@ -10,8 +10,8 @@ class ELearn_Grade extends Pluf_Model
      */
     function init()
     {
-        $this->_a['table'] = 'ELearngraid';
-        $this->_a['verbose'] = 'ELearnGraid';
+        $this->_a['table'] = 'elearn_graid';
+        $this->_a['verbose'] = 'ELearn_Graid';
         $this->_a['cols'] = array(
             'id' => array(
                 'type' => 'Pluf_DB_Field_Sequence',
@@ -47,7 +47,7 @@ class ELearn_Grade extends Pluf_Model
             // relations
             'courses' => array(
                 'type' => 'Pluf_DB_Field_Manytomany',
-                'model' => 'ELearnCourse',
+                'model' => 'ELearn_Course',
                 'relate_name' => 'courses',
                 'editable' => false,
                 'readable' => false

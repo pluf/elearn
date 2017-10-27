@@ -1,17 +1,17 @@
 {
-	"name": "EEE",
-	"version": "1",
-	"title": "English Elearning Entertainment",
+	"name": "ELearn",
+	"version": "2.1.8",
+	"title": "Elearning Module",
 	"model": [
-		"ELearnDomain",
-		"ELearnTopic",
-		"ELearnCourse",
-		"ELearnLesson",
-		"ELearnPart",
-		"ELearnPartHistory",
-		"ELearnGrade",
-		"ELearnComment",
-		"ELearnVote"
+		"ELearn_Domain",
+		"ELearn_Topic",
+		"ELearn_Course",
+		"ELearn_Lesson",
+		"ELearn_Part",
+		"ELearn_PartHistory",
+		"ELearn_Grade",
+		"ELearn_Comment",
+		"ELearn_Vote"
 		
 	],
 	"permisson": []

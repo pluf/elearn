@@ -1,6 +1,6 @@
 <?php
 Pluf::loadFunction('Pluf_Shortcuts_GetObjectOr404');
-Pluf::loadFunction('ELearnShortcuts_NormalizeItemPerPage');
+Pluf::loadFunction('ELearn_Shortcuts_NormalizeItemPerPage');
 
 class ELearn_Views_Part
 {
@@ -25,7 +25,7 @@ class ELearn_Views_Part
             $lessonId = $request->REQUEST['lesson'];
         }
         // Check if lesson is existed?
-        Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $lessonId);
+        Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $lessonId);
         // create part
         $extra = array(
             'user' => $request->user,
@@ -50,20 +50,20 @@ class ELearn_Views_Part
     {
         // Check and fetch Part
         if (array_key_exists('partId', $match)) {
-            $part = Pluf_Shortcuts_GetObjectOr404('ELearnPart', $match['partId']);
+            $part = Pluf_Shortcuts_GetObjectOr404('ELearn_Part', $match['partId']);
             // XXX: maso, 1395: محتوی در ملک باشد
         } else {
-            $part = ELearnShortcuts_GetPartByNameOr404($match['name']);
+            $part = ELearn_Shortcuts_GetPartByNameOr404($match['name']);
         }
         // Check and fetch Lesson
         if (isset($match['lessonId'])) {
             $lessonId = $match['lessonId'];
-            Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $lessonId);
+            Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $lessonId);
         } else if (isset($request->REQUEST['lessonId'])) {
             $lessonId = $request->REQUEST['lessonId'];
         }
         if (isset($lessonId)) {
-            $lesson = Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $lessonId);
+            $lesson = Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $lessonId);
             if ($part->lesson !== $lesson->id) {
                 throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lesson->id . ')');
             }
@@ -118,7 +118,7 @@ class ELearn_Views_Part
             'modif_dtime'
         );
         $paginator->configure(array(), $search_fields, $sort_fields);
-        $paginator->items_per_page = ELearnShortcuts_NormalizeItemPerPage($request);
+        $paginator->items_per_page = ELearn_Shortcuts_NormalizeItemPerPage($request);
         $paginator->setFromRequest($request);
         return new Pluf_HTTP_Response_Json($paginator->render_object());
     }
@@ -131,7 +131,7 @@ class ELearn_Views_Part
         } else {
             $partId = $request->REQUEST['partId'];
         }
-        $part = Pluf_Shortcuts_GetObjectOr404('ELearnPart', $partId);
+        $part = Pluf_Shortcuts_GetObjectOr404('ELearn_Part', $partId);
         // Check and fetch Lesson if is set
         if (isset($match['lessonId'])) {
             $lessonId = $match['lessonId'];
@@ -140,12 +140,12 @@ class ELearn_Views_Part
             $lessonId = $request->REQUEST['lesson'];
         }
         if (isset($lessonId)) {
-            $lesson = Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $lessonId);
+            $lesson = Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $lessonId);
             if ($part->lesson !== $lesson->id) {
                 throw new Pluf_Exception_DoesNotExist('Part with id (' . $partId . ') does not exist in lesson with id (' . $lessonId . ')');
             }
         }
-        $partCopy = Pluf_Shortcuts_GetObjectOr404('ELearnPart', $partId);
+        $partCopy = Pluf_Shortcuts_GetObjectOr404('ELearn_Part', $partId);
         $part->delete();
         return new Pluf_HTTP_Response_Json($partCopy);
     }
@@ -171,7 +171,7 @@ class ELearn_Views_Part
     public static function download($request, $match)
     {
         // get Part
-        $part = Pluf_Shortcuts_GetObjectOr404('ELearnPart', $match['partId']);
+        $part = Pluf_Shortcuts_GetObjectOr404('ELearn_Part', $match['partId']);
         // check Lesson if is set
         if (isset($match['lessonId'])) {
             $lessonId = $match['lessonId'];
@@ -180,7 +180,7 @@ class ELearn_Views_Part
             $lessonId = $request->REQUEST['lesson'];
         }
         if (isset($lessonId)) {
-            $lesson = Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $lessonId);
+            $lesson = Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $lessonId);
             if ($part->lesson !== $lesson->id) {
                 throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lessonId . ')');
             }
@@ -211,7 +211,7 @@ class ELearn_Views_Part
     }
     
     /**
-     * Validate parameters provided by request and match and return requested ELearnPart
+     * Validate parameters provided by request and match and return requested ELearn_Part
      * if params are valid.
      * @param  Pluf_HTTP_Request $request
      * @param array $match
@@ -219,7 +219,7 @@ class ELearn_Views_Part
      * @return ELearn_Part
      */
     private static function validatePart($request, $match, $id){
-        $part = Pluf_Shortcuts_GetObjectOr404('ELearnPart', $id);
+        $part = Pluf_Shortcuts_GetObjectOr404('ELearn_Part', $id);
         // check lesson
         if (isset($match['lessonId'])) {
             $lessonId = $match['lessonId'];
@@ -228,7 +228,7 @@ class ELearn_Views_Part
             $lessonId = $request->REQUEST['lesson'];
         }
         if (isset($lessonId)) {
-            $lesson = Pluf_Shortcuts_GetObjectOr404('ELearnLesson', $lessonId);
+            $lesson = Pluf_Shortcuts_GetObjectOr404('ELearn_Lesson', $lessonId);
             if ($part->lesson !== $lesson->id) {
                 throw new Pluf_Exception_DoesNotExist('Part with id (' . $part->id . ') does not exist in lesson with id (' . $lesson->id . ')');
             }
