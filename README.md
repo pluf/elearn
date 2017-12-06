@@ -1,4 +1,6 @@
-# EEE-Server
+# ELearn Pluf module
+
+A module to add materials.
 
 ## master
 
