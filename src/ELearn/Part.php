@@ -101,14 +101,14 @@ class ELearn_Part extends Pluf_Model
         );
         
         $this->_a['idx'] = array(
-            'part_name_idx' => array(
-                'col' => 'name',
-                'type' => 'normal', // normal, unique, fulltext, spatial
-                'index_type' => '', // hash, btree
-                'index_option' => '',
-                'algorithm_option' => '',
-                'lock_option' => ''
-            ),
+//             'part_name_idx' => array(
+//                 'col' => 'name',
+//                 'type' => 'normal', // normal, unique, fulltext, spatial
+//                 'index_type' => '', // hash, btree
+//                 'index_option' => '',
+//                 'algorithm_option' => '',
+//                 'lock_option' => ''
+//             ),
             'part_mime_type_idx' => array(
                 'col' => 'mime_type',
                 'type' => 'normal', // normal, unique, fulltext, spatial
