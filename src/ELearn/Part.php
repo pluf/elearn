@@ -24,13 +24,13 @@ class ELearn_Part extends Pluf_Model
                 'editable' => true,
                 'readable' => true
             ),
-            'name' => array(
+            /*'name' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => false,
                 'size' => 100,
                 'editable' => true,
                 'readable' => true
-            ),
+            ),*/
             'title' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => true,
@@ -41,35 +41,35 @@ class ELearn_Part extends Pluf_Model
             'description' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => true,
-                'size' => 250,
+                'size' => 1024,
                 'editable' => true,
                 'readable' => true
             ),
             'mime_type' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
+                'blank' => true,
                 'size' => 100,
                 'default' => 'application/octet-stream',
-                'editable' => false,
+                'editable' => true,
                 'readable' => true
             ),
             'file_path' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
+                'blank' => true,
                 'size' => 250,
                 'editable' => false,
                 'readable' => false
             ),
             'file_name' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
-                'blank' => false,
+                'blank' => true,
                 'size' => 250,
                 'default' => 'noname',
                 'editable' => false
             ),
             'file_size' => array(
                 'type' => 'Pluf_DB_Field_Integer',
-                'blank' => false,
+                'blank' => true,
                 'editable' => false
             ),
             'creation_dtime' => array(
@@ -101,14 +101,14 @@ class ELearn_Part extends Pluf_Model
         );
         
         $this->_a['idx'] = array(
-            'part_name_idx' => array(
-                'col' => 'name',
-                'type' => 'normal', // normal, unique, fulltext, spatial
-                'index_type' => '', // hash, btree
-                'index_option' => '',
-                'algorithm_option' => '',
-                'lock_option' => ''
-            ),
+//             'part_name_idx' => array(
+//                 'col' => 'name',
+//                 'type' => 'normal', // normal, unique, fulltext, spatial
+//                 'index_type' => '', // hash, btree
+//                 'index_option' => '',
+//                 'algorithm_option' => '',
+//                 'lock_option' => ''
+//             ),
             'part_mime_type_idx' => array(
                 'col' => 'mime_type',
                 'type' => 'normal', // normal, unique, fulltext, spatial
