@@ -10,8 +10,8 @@ return array(
             'model' => 'ELearn_Domain'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Find
@@ -65,8 +65,8 @@ return array(
             'permanently' => true
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Update
@@ -78,8 +78,8 @@ return array(
             'model' => 'ELearn_Domain'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // ************************************************************* Topics of Domain
@@ -98,8 +98,8 @@ return array(
             'model' => 'ELearn_Topic'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Get information
@@ -117,8 +117,8 @@ return array(
             'model' => 'ELearn_Topic'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Topic
@@ -127,8 +127,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Topic
@@ -137,8 +137,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // ************************************************************* Topics
@@ -166,8 +166,8 @@ return array(
             'model' => 'ELearn_Topic'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Get information
@@ -185,8 +185,8 @@ return array(
             'model' => 'ELearn_Topic'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove Topic
@@ -195,8 +195,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // ************************************************************* Course of Topic
@@ -215,8 +215,8 @@ return array(
             'model' => 'ELearn_Course'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Get information
@@ -234,8 +234,8 @@ return array(
             'model' => 'ELearn_Course'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Course
@@ -244,8 +244,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Course
@@ -254,8 +254,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // ************************************************************* Course
@@ -283,8 +283,8 @@ return array(
             'model' => 'ELearn_Course'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Get information
@@ -302,8 +302,8 @@ return array(
             'model' => 'ELearn_Course'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove Course
@@ -312,8 +312,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // ************************************************************* Lesson of Course
@@ -332,8 +332,8 @@ return array(
             'model' => 'ELearn_Lesson'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Get information
@@ -351,8 +351,8 @@ return array(
             'model' => 'ELearn_Lesson'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Lesson
@@ -361,8 +361,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Lesson
@@ -371,8 +371,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // ************************************************************* Lesson
@@ -400,8 +400,8 @@ return array(
             'model' => 'ELearn_Lesson'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Get information
@@ -419,8 +419,8 @@ return array(
             'model' => 'ELearn_Lesson'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove Lesson
@@ -429,8 +429,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // ************************************************************* Part of Lesson
@@ -449,8 +449,8 @@ return array(
             'model' => 'ELearn_Part'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Get information
@@ -468,8 +468,8 @@ return array(
             'model' => 'ELearn_Part'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Part
@@ -478,8 +478,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Part
@@ -488,8 +488,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // Download Part content
@@ -511,8 +511,8 @@ return array(
         'method' => 'updateFile',
         'http-method' => 'POST',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // ************************************************************* Part
@@ -540,8 +540,8 @@ return array(
             'model' => 'ELearn_Part'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Get information
@@ -559,8 +559,8 @@ return array(
             'model' => 'ELearn_Part'
         ),
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     array( // Remove a Part
@@ -569,8 +569,8 @@ return array(
         'method' => 'remove',
         'http-method' => 'DELETE',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     ),
     // Download Part content
@@ -592,8 +592,8 @@ return array(
         'method' => 'updateFile',
         'http-method' => 'POST',
         'precond' => array(
-            'Pluf_Precondition::loginRequired',
-            'Pluf_Precondition::memberRequired'
+            'User_Precondition::loginRequired',
+            'User_Precondition::loginRequired'
         )
     )
 );

@@ -55,7 +55,7 @@ class ELearn_Topic extends Pluf_Model
             // relations
             'owner' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'Pluf_User',
+                'model' => 'User',
                 'blank' => false,
                 'relate_name' => 'owner',
                 'editable' => true,

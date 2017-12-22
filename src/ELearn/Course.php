@@ -64,7 +64,7 @@ class ELearn_Course extends Pluf_Model
             ),
             'authors' => array(
                 'type' => 'Pluf_DB_Field_Manytomany',
-                'model' => 'Pluf_User',
+                'model' => 'User',
                 'relate_name' => 'authors',
                 'editable' => false,
                 'readable' => false

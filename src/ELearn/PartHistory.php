@@ -38,7 +38,7 @@ class ELearn_PartHistory extends Pluf_Model
             // relations
             'user' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'Pluf_User',
+                'model' => 'User',
                 'blank' => false,
                 'relate_name' => 'user',
                 'editable' => false,
