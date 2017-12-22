@@ -6,7 +6,7 @@ return array(
     'ELearn_Topic' => array(
         'relate_to' => array(
             'ELearn_Domain',
-            'Pluf_User'
+            'User'
         )
     ),
     'ELearn_Course' => array(
@@ -14,7 +14,7 @@ return array(
             'ELearn_Topic'
         ),
         'relate_to_many' => array(
-            'Pluf_User'
+            'User'
         )
     ),
     'ELearn_Grade' => array(
@@ -38,18 +38,18 @@ return array(
     'ELearn_PartHistory' => array(
         'relate_to' => array(
             'ELearn_Part',
-            'Pluf_User'
+            'User'
         )
     ),
     'ELearn_Comment' => array(
         'relate_to' => array(
-            'Pluf_User'
+            'User'
         )
     ),
     'ELearn_Vote' => array(
         'relate_to' => array(
             'ELearn_Comment',
-            'Pluf_User'
+            'User'
         )
     )
 

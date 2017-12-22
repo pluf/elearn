@@ -58,7 +58,7 @@ class ELearn_Vote extends Pluf_Model
             ),
             'user' => array(
                 'type' => 'Pluf_DB_Field_Foreignkey',
-                'model' => 'Pluf_User',
+                'model' => 'User',
                 'blank' => false,
                 'relate_name' => 'user',
                 'editable' => true,
