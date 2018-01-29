@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit colors="true">
-	<testsuites>
+    <testsuites>
 		<testsuite name="Pluf">
-			<directory>./Cms/</directory>
-			<directory>./Cms_Contetn/</directory>
-			<directory>./Cms_REST/</directory>
-			<directory>./Cms_Monitor/</directory>
+			<directory>tests/Spa_REST/</directory>
 		</testsuite>
-	</testsuites>
-
-	<!-- Code coverage -->
-	<filter>
-		<whitelist addUncoveredFilesFromWhitelist="true">
-			<directory suffix=".php">../src</directory>
-		</whitelist>
-	</filter>
-	<logging>
-		<log type="coverage-clover" target="./clover.xml" />
-	</logging>
+    </testsuites>
+    
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
 </phpunit>
