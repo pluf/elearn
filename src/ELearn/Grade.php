@@ -40,7 +40,7 @@ class ELearn_Grade extends Pluf_Model
             'description' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => false,
-                'size' => 250,
+                'size' => 2048,
                 'editable' => true,
                 'readable' => true
             ),
