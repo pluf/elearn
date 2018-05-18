@@ -36,7 +36,7 @@ class ELearn_Course extends Pluf_Model
             'abstract' => array(
                 'type' => 'Pluf_DB_Field_Varchar',
                 'blank' => true,
-                'size' => 250,
+                'size' => 2048,
                 'editable' => true,
                 'readable' => true
             ),
