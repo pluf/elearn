@@ -20,21 +20,7 @@ return array(
         'method' => 'findObject',
         'http-method' => 'GET',
         'params' => array(
-            'model' => 'ELearn_Domain',
-            'listFilters' => array(
-                'id',
-                'title'
-            ),
-            '$searchFields' => array(
-                'title',
-                'description'
-            ),
-            'sortFields' => array(
-                'id',
-                'title',
-                'creation_date',
-                'modif_dtime'
-            )
+            'model' => 'ELearn_Domain'
         )
     ),
     array( // List All Domains
