@@ -17,9 +17,9 @@
 	],
 	"minimum-stability" : "stable",
 	"require" : {
-		"pluf/core" : "5.13.x",
-		"pluf/cms" : "5.13.x",
-		"pluf/user" : "5.13.x"
+		"pluf/core" : "6.0.x",
+		"pluf/cms" : "6.0.x",
+		"pluf/user" : "6.0.x"
 	},
 	"require-dev" : {
 		"pluf/test" : "^5.9"
